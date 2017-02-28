@@ -11,4 +11,9 @@ package pkg311project;
  */
 public class ContactsController {
     
+    
+    ContactsController(ContactsModel contacts_model, ContactsFrame contacts_frame){
+    
+    }
+    
 }

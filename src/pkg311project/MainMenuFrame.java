@@ -32,4 +32,20 @@ public class MainMenuFrame extends JFrame {
 //    public void addMasterButtonListener(ActionListener al) {
 //        nVpanel.menu.loginButton.addActionListener(al);
 //    }
+
+    public MainMenuViewModel getModel() {
+        return model;
+    }
+
+    public void setModel(MainMenuViewModel model) {
+        this.model = model;
+    }
+
+    public MainMenuView getnVpanel() {
+        return nVpanel;
+    }
+
+    public void setnVpanel(MainMenuView nVpanel) {
+        this.nVpanel = nVpanel;
+    }
 }
