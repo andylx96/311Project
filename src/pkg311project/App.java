@@ -9,7 +9,7 @@ package pkg311project;
  *
  * @author ajl5735
  */
-public class Main {
+public class App {
 
     /**
      * @param args the command line arguments
@@ -19,7 +19,7 @@ public class Main {
 
         MainMenuViewModel model = new MainMenuViewModel();
         MainMenuFrame view = new MainMenuFrame(model);
-        MainMenuViewController controller = new MainMenuViewController(model, view);
+        MainMenuController controller = new MainMenuController(model, view);
 
         view.setVisible(true);
     }
