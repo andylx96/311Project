@@ -17,9 +17,9 @@ public class Main {
     public static void main(String[] args) throws Throwable {
         // TODO code application logic here
 
-        NavModel model = new NavModel();
-        NavViewFrame view = new NavViewFrame(model);
-        NavController controller = new NavController(model, view);
+        MainMenuViewModel model = new MainMenuViewModel();
+        MainMenuFrame view = new MainMenuFrame(model);
+        MainMenuViewController controller = new MainMenuViewController(model, view);
 
         view.setVisible(true);
     }

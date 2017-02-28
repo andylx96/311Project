@@ -6,25 +6,19 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JPanel;
 
-public class NavViewPanel extends JPanel {
+public class MainMenuView extends JPanel {
 
-    NavViewMenuPanel menu;
-
-    public NavViewMenuPanel getMenu() {
-        return menu;
-    }
-
-    public void setMenu(NavViewMenuPanel menu) {
-        this.menu = menu;
-    }
+  
    
-    public NavViewPanel() {
+    public MainMenuView() {
         super();
         setLayout(new BorderLayout());
-        menu = new NavViewMenuPanel();
+//        menu = new NavViewMenuPanel();
+//        
+//
+//        add(menu, BorderLayout.SOUTH);
+//        
         
-
-        add(menu, BorderLayout.SOUTH);
     }
 
 //    public void addCreate(CreateView create_view) {

@@ -3,17 +3,17 @@ package pkg311project;
 import java.awt.event.ActionListener;
 import javax.swing.JFrame;
 
-public class NavViewFrame extends JFrame {
+public class MainMenuFrame extends JFrame {
 
-    NavModel model;
-    NavViewPanel nVpanel;
+    MainMenuViewModel model;
+    MainMenuView nVpanel;
 
-    NavViewFrame(NavModel model) {
-        super("Account Manager");
+    MainMenuFrame(MainMenuViewModel model) {
+        super("Contact Manager And Calender");
         this.model = model;
 
         setSize(700, 500);
-        nVpanel = new NavViewPanel();
+        nVpanel = new MainMenuView();
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         add(nVpanel);
