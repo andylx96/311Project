@@ -21,11 +21,11 @@ import javax.swing.event.DocumentListener;
 public class NavController {
 
     NavModel n_model;
-    NavView n_view;
+    NavViewFrame n_view;
 
  
 
-    public NavController(NavModel n_model, NavView n_view) throws Throwable {
+    public NavController(NavModel n_model, NavViewFrame n_view) throws Throwable {
         this.n_model = n_model;
         this.n_view = n_view;
 

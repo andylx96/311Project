@@ -3,12 +3,12 @@ package pkg311project;
 import java.awt.event.ActionListener;
 import javax.swing.JFrame;
 
-public class NavView extends JFrame {
+public class NavViewFrame extends JFrame {
 
     NavModel model;
     NavViewPanel nVpanel;
 
-    NavView(NavModel model) {
+    NavViewFrame(NavModel model) {
         super("Account Manager");
         this.model = model;
 

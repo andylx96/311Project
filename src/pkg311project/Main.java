@@ -18,7 +18,7 @@ public class Main {
         // TODO code application logic here
 
         NavModel model = new NavModel();
-        NavView view = new NavView(model);
+        NavViewFrame view = new NavViewFrame(model);
         NavController controller = new NavController(model, view);
 
         view.setVisible(true);

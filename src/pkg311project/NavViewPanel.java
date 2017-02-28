@@ -8,20 +8,20 @@ import javax.swing.JPanel;
 
 public class NavViewPanel extends JPanel {
 
-    NavViewBottomMenuPanel menu;
+    NavViewMenuPanel menu;
 
-    public NavViewBottomMenuPanel getMenu() {
+    public NavViewMenuPanel getMenu() {
         return menu;
     }
 
-    public void setMenu(NavViewBottomMenuPanel menu) {
+    public void setMenu(NavViewMenuPanel menu) {
         this.menu = menu;
     }
    
     public NavViewPanel() {
         super();
         setLayout(new BorderLayout());
-        menu = new NavViewBottomMenuPanel();
+        menu = new NavViewMenuPanel();
         
 
         add(menu, BorderLayout.SOUTH);

@@ -4,10 +4,11 @@ package pkg311project;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
-public class NavViewBottomMenuPanel extends JPanel {
+public class NavViewMenuPanel extends JPanel {
     
     JButton createButton, loginButton, deleteButton, searchButton, viewButton, createMaster, saveButton;
-    public NavViewBottomMenuPanel() {
+   
+    public NavViewMenuPanel() {
         super();
         loginButton = new JButton("LOGIN");
         createButton = new JButton("Create Account");
