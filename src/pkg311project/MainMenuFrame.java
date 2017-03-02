@@ -1,22 +1,30 @@
 package pkg311project;
 
+import java.awt.BorderLayout;
 import java.awt.event.ActionListener;
 import javax.swing.JFrame;
 
 public class MainMenuFrame extends JFrame {
 
     MainMenuViewModel model;
-    MainMenuView nVpanel;
+    MainMenuFrame n_frame;
+    ContactsModel contacts_model;
+    ContactsFrame contacts_frame;
+    ContactsController contacts_controller;
+    ContactsView contacts_view;
+    MainMenuView main_view;
+    LoginView log_view;
+    MainMenuPanel main_panel;
 
     MainMenuFrame(MainMenuViewModel model) {
         super("Contact Manager And Calender");
         this.model = model;
+        main_panel = new MainMenuPanel();
 
         setSize(700, 500);
-        nVpanel = new MainMenuView();
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
-        add(nVpanel);
+        add(main_panel);
     }
 
 //    public void switchToCreateMasterLoginViewPanel(CreateMasterLoginView createMasterLogin_view) {
@@ -32,6 +40,11 @@ public class MainMenuFrame extends JFrame {
 //    public void addMasterButtonListener(ActionListener al) {
 //        nVpanel.menu.loginButton.addActionListener(al);
 //    }
+    public void switchToMainView(MainMenuView main_view) {
+   main_panel.removeLogin();
+   main_panel.removeMainMenu();
+   main_panel.addMainMenu(main_view);
+    }
 
     public MainMenuViewModel getModel() {
         return model;
@@ -41,11 +54,13 @@ public class MainMenuFrame extends JFrame {
         this.model = model;
     }
 
-    public MainMenuView getnVpanel() {
-        return nVpanel;
+    public MainMenuPanel getMain_panel() {
+        return main_panel;
     }
 
-    public void setnVpanel(MainMenuView nVpanel) {
-        this.nVpanel = nVpanel;
+    public void setMain_panel(MainMenuPanel main_panel) {
+        this.main_panel = main_panel;
     }
+
+   
 }
