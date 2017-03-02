@@ -11,31 +11,31 @@ import javax.swing.JFrame;
  *
  * @author ajl5735
  */
-public class ContactsFrame extends JFrame {
-   ContactsModel model;
-    ContactsPanel panel;
+public class CalendarFrame extends JFrame {
+   CalendarModel model;
+    CalendarPanel panel;
     
-    public ContactsFrame(ContactsModel model){
+    public CalendarFrame(CalendarModel model){
     super("Hi");
     this.model = model;
     
        setSize(700, 500);
-        panel = new ContactsPanel();
+        panel = new CalendarPanel();
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         add(panel);
     
     }
 
-    public ContactsPanel getPanel() {
+    public CalendarPanel getPanel() {
         return panel;
     }
 
-    public void setPanel(ContactsPanel panel) {
+    public void setPanel(CalendarPanel panel) {
         this.panel = panel;
     }
-        public void switchToContacts(ContactsView contact_view) {
-   panel.removeContactView();
-   panel.addContactView(contact_view);
+        public void switchToCalendar(CalendarView calendar_view) {
+   panel.removeCalendarView();
+   panel.addCalendarView(calendar_view);
     }
 }

@@ -5,20 +5,15 @@
  */
 package pkg311project;
 
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-
 /**
  *
  * @author ajl5735
  */
-public class ContactsView extends JPanel {
-
-    JLabel label;
-
-    public ContactsView() {
-        label = new JLabel("OHAIO");
-        add(label);
+public class CalendarController {
+    
+    
+    CalendarController(CalendarModel calandar_model, CalendarFrame calandar_frame){
+    
     }
-
+    
 }

@@ -12,12 +12,12 @@ import javax.swing.JPanel;
  *
  * @author ajl5735
  */
-public class ContactsView extends JPanel {
+public class CalendarView extends JPanel {
 
     JLabel label;
 
-    public ContactsView() {
-        label = new JLabel("OHAIO");
+    public CalendarView() {
+        label = new JLabel("OHAIO2");
         add(label);
     }
 
