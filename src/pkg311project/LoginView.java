@@ -5,9 +5,11 @@
  */
 package pkg311project;
 
+import java.awt.GridLayout;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextArea;
 
 /**
  *
@@ -16,13 +18,19 @@ import javax.swing.JPanel;
 public class LoginView extends JPanel {
 
     JLabel hi;
+    JTextArea username, password;
     JButton loginButton;
 
     public LoginView() {
+        setLayout(new GridLayout(10, 1));
         hi = new JLabel("hi");
         loginButton = new JButton("Login");
-        
+        username = new JTextArea("Username");
+        password = new JTextArea("Password");
+
         add(hi);
+        add(username);
+        add(password);
         add(loginButton);
     }
 
@@ -41,7 +49,5 @@ public class LoginView extends JPanel {
     public void setLoginButton(JButton loginButton) {
         this.loginButton = loginButton;
     }
-    
-      
 
 }
