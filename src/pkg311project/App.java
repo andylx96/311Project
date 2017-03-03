@@ -17,7 +17,7 @@ public class App {
     public static void main(String[] args) throws Throwable {
         // TODO code application logic here
 
-        MainMenuViewModel model = new MainMenuViewModel();
+        MainMenuModel model = new MainMenuModel();
         MainMenuFrame view = new MainMenuFrame(model);
         MainMenuController controller = new MainMenuController(model, view);
 

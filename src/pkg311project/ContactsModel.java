@@ -5,10 +5,13 @@
  */
 package pkg311project;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author ajl5735
  */
 public class ContactsModel {
+
     
 }

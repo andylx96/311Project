@@ -7,6 +7,7 @@ package pkg311project;
 
 import java.awt.GridLayout;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
@@ -17,29 +18,36 @@ import javax.swing.JTextArea;
  */
 public class LoginView extends JPanel {
 
-    JLabel hi;
+    JLabel loginStatus, hint;
     JTextArea username, password;
     JButton loginButton;
-
+    JComboBox<String> usernameCombo;
+    
+    
     public LoginView() {
-        setLayout(new GridLayout(10, 1));
-        hi = new JLabel("hi");
+        setLayout(new GridLayout(10, 3));
+        loginStatus = new JLabel("Please Login.");
         loginButton = new JButton("Login");
         username = new JTextArea("Username");
         password = new JTextArea("Password");
-
-        add(hi);
+        hint = new JLabel("The Default Username and Password is, Username/Password");
+        usernameCombo = new JComboBox();
+     
+        
+        add(loginStatus);
+        add(hint);
         add(username);
         add(password);
         add(loginButton);
+        add(usernameCombo);
     }
 
-    public JLabel getHi() {
-        return hi;
+    public JLabel getLoginStatus() {
+        return loginStatus;
     }
 
-    public void setHi(JLabel hi) {
-        this.hi = hi;
+    public void setLoginStatus(JLabel loginStatus) {
+        this.loginStatus = loginStatus;
     }
 
     public JButton getLoginButton() {
@@ -48,6 +56,38 @@ public class LoginView extends JPanel {
 
     public void setLoginButton(JButton loginButton) {
         this.loginButton = loginButton;
+    }
+
+    public JTextArea getUsername() {
+        return username;
+    }
+
+    public void setUsername(JTextArea username) {
+        this.username = username;
+    }
+
+    public JTextArea getPassword() {
+        return password;
+    }
+
+    public void setPassword(JTextArea password) {
+        this.password = password;
+    }
+
+    public JLabel getHint() {
+        return hint;
+    }
+
+    public void setHint(JLabel hint) {
+        this.hint = hint;
+    }
+
+    public JComboBox getUsernameCombo() {
+        return usernameCombo;
+    }
+
+    public void setUsernameCombo(JComboBox usernameCombo) {
+        this.usernameCombo = usernameCombo;
     }
 
 }

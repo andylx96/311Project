@@ -14,7 +14,7 @@ import javax.swing.JPanel;
  */
 public class MainMenuPanel extends JPanel {
 
-    MainMenuViewModel model;
+    MainMenuModel model;
     MainMenuFrame n_frame;
     ContactsModel contacts_model;
     ContactsFrame contacts_frame;

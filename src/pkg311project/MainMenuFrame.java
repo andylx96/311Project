@@ -6,7 +6,7 @@ import javax.swing.JFrame;
 
 public class MainMenuFrame extends JFrame {
 
-    MainMenuViewModel model;
+    MainMenuModel model;
     MainMenuFrame n_frame;
     ContactsModel contacts_model;
     ContactsFrame contacts_frame;
@@ -16,7 +16,7 @@ public class MainMenuFrame extends JFrame {
     LoginView log_view;
     MainMenuPanel main_panel;
 
-    MainMenuFrame(MainMenuViewModel model) {
+    MainMenuFrame(MainMenuModel model) {
         super("Contact Manager And Calender");
         this.model = model;
         main_panel = new MainMenuPanel();
@@ -46,11 +46,11 @@ public class MainMenuFrame extends JFrame {
    main_panel.addMainMenu(main_view);
     }
 
-    public MainMenuViewModel getModel() {
+    public MainMenuModel getModel() {
         return model;
     }
 
-    public void setModel(MainMenuViewModel model) {
+    public void setModel(MainMenuModel model) {
         this.model = model;
     }
 
