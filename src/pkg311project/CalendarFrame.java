@@ -21,7 +21,6 @@ public class CalendarFrame extends JFrame {
     
        setSize(700, 500);
         panel = new CalendarPanel();
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         add(panel);
     

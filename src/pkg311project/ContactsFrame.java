@@ -21,7 +21,6 @@ public class ContactsFrame extends JFrame {
     
        setSize(700, 500);
         panel = new ContactsPanel();
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         add(panel);
     
