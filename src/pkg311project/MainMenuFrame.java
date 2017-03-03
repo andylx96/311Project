@@ -17,7 +17,7 @@ public class MainMenuFrame extends JFrame {
     MainMenuPanel main_panel;
 
     MainMenuFrame(MainMenuModel model) {
-        super("Contact Manager And Calender");
+        super("Contact Calender App");
         this.model = model;
         main_panel = new MainMenuPanel();
 

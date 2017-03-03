@@ -16,7 +16,7 @@ public class ContactsFrame extends JFrame {
     ContactsPanel panel;
     
     public ContactsFrame(ContactsModel model){
-    super("Hi");
+    super("Contacts");
     this.model = model;
     
        setSize(700, 500);

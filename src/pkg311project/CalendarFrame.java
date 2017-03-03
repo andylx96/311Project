@@ -16,7 +16,7 @@ public class CalendarFrame extends JFrame {
     CalendarPanel panel;
     
     public CalendarFrame(CalendarModel model){
-    super("Hi");
+    super("Calendar");
     this.model = model;
     
        setSize(700, 500);
