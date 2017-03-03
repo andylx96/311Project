@@ -17,7 +17,7 @@ public class CalendarView extends JPanel {
     JLabel label;
 
     public CalendarView() {
-        label = new JLabel("OHAIO2");
+        label = new JLabel("CalendarStuff");
         add(label);
     }
 

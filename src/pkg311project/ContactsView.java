@@ -17,7 +17,7 @@ public class ContactsView extends JPanel {
     JLabel label;
 
     public ContactsView() {
-        label = new JLabel("OHAIO");
+        label = new JLabel("Contact Stuff");
         add(label);
     }
 

@@ -27,20 +27,6 @@ public class MainMenuView extends JPanel {
         
     }
 
-//    public void addCreate(CreateView create_view) {
-//        this.create_view = create_view;  //maintain handle to this view so we can remove it
-//        add(create_view, BorderLayout.CENTER);
-//        revalidate();
-//        repaint();
-//    }
-//
-//
-//    public void removeCreate() {
-//        if (this.create_view != null) {
-//            remove(this.create_view);
-//        }
-//    }
-
     public JButton getCalendarButton() {
         return calendarButton;
     }

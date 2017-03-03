@@ -36,10 +36,9 @@ public class LoginView extends JPanel {
         
         add(loginStatus);
         add(hint);
-        add(username);
+        add(usernameCombo);
         add(password);
         add(loginButton);
-        add(usernameCombo);
     }
 
     public JLabel getLoginStatus() {
