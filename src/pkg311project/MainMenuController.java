@@ -113,4 +113,9 @@ public class MainMenuController {
 
     }
 
+    public CalendarFrame getCalendar_frame() {
+        return calendar_frame;
+    }
+    
+
 }

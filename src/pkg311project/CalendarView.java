@@ -5,20 +5,27 @@
  */
 package pkg311project;
 
+import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-/**
- *
- * @author ajl5735
- */
-public class CalendarView extends JPanel {
 
-    JLabel label;
+public class CalendarView extends JPanel {
+    
+    JButton appointments;
 
     public CalendarView() {
-        label = new JLabel("CalendarStuff");
-        add(label);
+        appointments = new JButton("Appointments");
+        add(appointments);
     }
 
+    public JButton getAppointments() {
+        return appointments;
+    }
+
+    public void setAppointments(JButton appointments) {
+        this.appointments = appointments;
+    }
+    
+    
 }

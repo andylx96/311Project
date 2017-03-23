@@ -12,7 +12,7 @@ import javax.swing.JFrame;
  * @author ajl5735
  */
 public class CalendarFrame extends JFrame {
-   CalendarModel model;
+    CalendarModel model;
     CalendarPanel panel;
     
     public CalendarFrame(CalendarModel model){
@@ -33,8 +33,17 @@ public class CalendarFrame extends JFrame {
     public void setPanel(CalendarPanel panel) {
         this.panel = panel;
     }
-        public void switchToCalendar(CalendarView calendar_view) {
-   panel.removeCalendarView();
-   panel.addCalendarView(calendar_view);
+    
+    public void switchToCalendar(CalendarView calendar_view) {
+        panel.removeCalendarView();
+        panel.addCalendarView(calendar_view);
     }
+    
+    public void switchToCalendarAppointView(CalendarAppointView cap_view)
+    {
+        panel.removeCalendarView();
+        panel.addCalendarAppointView(cap_view);
+    }
+    
+    
 }
