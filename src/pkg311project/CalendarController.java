@@ -13,20 +13,34 @@ import java.awt.event.ActionListener;
  * @author ajl5735
  */
 public class CalendarController {
-    CalendarView c_view;
-    MainMenuController mm_controller;
+    CalendarView Calendar_view;
+    CalendarModel calendar_model;
+    CalendarFrame calendar_frame;
+//    MainMenuController mm_controller;
     
     CalendarController(CalendarModel calandar_model, CalendarFrame calandar_frame){
-        c_view = new CalendarView();
+        this.calendar_model = calendar_model;
+        this.calendar_frame = calendar_frame;
+        Calendar_view = new CalendarView();
         
-        c_view.getAppointments().addActionListener(new AppointmentViewButton());
+//        Calendar_view.getAppointments().addActionListener(new AppointmentButton());
+//        c_view.getCalendar().addActionListener(new CalendarButton());
     }
     
     }
-    class AppointmentViewButton implements ActionListener {
 
-        public void actionPerformed(ActionEvent e) {
+//    class AppointmentButton implements ActionListener {
+//        @Override
+//        public void actionPerformed(ActionEvent e) {
+//            Calendar_view.getAppointments().setVisible(false);
+//            Calendar_view.getCalendar().setVisible(true);
+//            System.out.println("saved");
+//        }
+//    }
+
+    class CalendarButton implements ActionListener {
+        public void actionPerformed(ActionEvent e){
             
         }
-    
-}
+    }
+

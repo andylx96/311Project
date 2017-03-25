@@ -52,4 +52,5 @@ public class CalendarPanel extends JPanel {
             this.remove(cap_view);
         }
     }
+    
 }

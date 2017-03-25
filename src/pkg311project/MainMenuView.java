@@ -12,18 +12,20 @@ import javax.swing.JPanel;
 public class MainMenuView extends JPanel {
 
   
-   JButton calendarButton, contactsButton;
+   JButton calendarButton, contactsButton, testButton;
    JLabel picture;
     public MainMenuView() {
         super();
         setLayout(new BorderLayout());
         calendarButton = new JButton("Calendar");
         contactsButton = new JButton("Contacts");
+        testButton = new JButton("TEST");
         picture = new JLabel(new ImageIcon("src/pkg311project/ourApp.png"));
         
         add(calendarButton, BorderLayout.EAST);
         add(contactsButton, BorderLayout.WEST);
         add(picture, BorderLayout.CENTER);
+        add(testButton, BorderLayout.SOUTH);
         
     }
 
@@ -43,5 +45,12 @@ public class MainMenuView extends JPanel {
         this.contactsButton = contactsButton;
     }
 
+    public JButton getTestButton() {
+        return testButton;
+    }
+
+    public void setTestButton(JButton testButton) {
+        this.testButton = testButton;
+    }
 
 }

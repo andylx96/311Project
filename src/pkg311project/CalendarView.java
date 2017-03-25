@@ -12,11 +12,14 @@ import javax.swing.JPanel;
 
 public class CalendarView extends JPanel {
     
-    JButton appointments;
+    JButton appointments, calendar;
 
     public CalendarView() {
         appointments = new JButton("Appointments");
+        calendar = new JButton("Calendar");
         add(appointments);
+        add(calendar);
+        calendar.setVisible(false);
     }
 
     public JButton getAppointments() {
@@ -25,6 +28,14 @@ public class CalendarView extends JPanel {
 
     public void setAppointments(JButton appointments) {
         this.appointments = appointments;
+    }
+
+    public JButton getCalendar() {
+        return calendar;
+    }
+
+    public void setCalendar(JButton calendar) {
+        this.calendar = calendar;
     }
     
     
