@@ -5,6 +5,7 @@
  */
 package pkg311project;
 
+import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -26,9 +27,8 @@ public class CalendarController {
         
         
         calendar_frame.getPanel().getCalendar_view().getAppointments().addActionListener(new AppointmentButton());
-//        calendar_frame.getPanel().getCalendar_view().getCalendar().addActionListener(new AppointmentButton());
+        calendar_frame.getPanel().getCalendar_view().getCalendar().addActionListener(new CalendarButtonListener());
 
-//        c_view.getCalendar().addActionListener(new CalendarButton());
     }
 
     public void hi() {
@@ -41,14 +41,16 @@ public class CalendarController {
         public void actionPerformed(ActionEvent e) {
             calendar_frame.getPanel().getCalendar_view().getAppointments().setVisible(false);
             calendar_frame.getPanel().getCalendar_view().getCalendar().setVisible(true);
-            System.out.println("saved");
+            calendar_frame.getPanel().getCalendar_view().addTable();
         }
     }
 
     class CalendarButtonListener implements ActionListener {
-
+        @Override
         public void actionPerformed(ActionEvent e) {
-
+            calendar_frame.getPanel().getCalendar_view().getCalendar().setVisible(false);
+            calendar_frame.getPanel().getCalendar_view().removeTable();
+            calendar_frame.getPanel().getCalendar_view().getAppointments().setVisible(true);
         }
     }
 
