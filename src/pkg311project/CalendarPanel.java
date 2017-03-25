@@ -37,20 +37,26 @@ public class CalendarPanel extends JPanel {
             this.remove(calendar_view);
         }
     }
-    
-    public void addCalendarAppointView(CalendarAppointView cap_view)
-    {
+
+    public void addCalendarAppointView(CalendarAppointView cap_view) {
         this.cap_view = cap_view;
         add(cap_view, BorderLayout.CENTER);
         revalidate();
         repaint();
     }
-    
-    public void removeCalendarAppointView()
-    {
-        if(this.cap_view != null){
+
+    public void removeCalendarAppointView() {
+        if (this.cap_view != null) {
             this.remove(cap_view);
         }
     }
-    
+
+    public CalendarView getCalendar_view() {
+        return calendar_view;
+    }
+
+    public void setCalendar_view(CalendarView calendar_view) {
+        this.calendar_view = calendar_view;
+    }
+
 }

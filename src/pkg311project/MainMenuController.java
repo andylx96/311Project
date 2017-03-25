@@ -33,8 +33,9 @@ public class MainMenuController {
         n_frame.getMain_panel().getLog_view().getLoginButton().addActionListener(new LoginButtonListener());
         main_view.getCalendarButton().addActionListener(new CalendarButtonListener());
 //        main_view.getTestButton().addActionListener(new TestButtonListener());
+
     }
-        
+
     class ContactsButtonListener implements ActionListener {
 
         @Override
@@ -50,14 +51,13 @@ public class MainMenuController {
         }
 
     }
-    
+
 //    class TestButtonListener implements ActionListener {
 //        @Override
 //        public void actionPerformed(ActionEvent e){
 //            main_view.getTestButton().setVisible(false);
 //        }
 //    }
-
     class CalendarButtonListener implements ActionListener {
 
         @Override
@@ -67,14 +67,13 @@ public class MainMenuController {
                 calendar_model = new CalendarModel();
                 calendar_frame = new CalendarFrame(calendar_model);
                 calendar_controller = new CalendarController(calendar_model, calendar_frame);
-                calendar_view = new CalendarView();
+
                 calendar_frame.setVisible(true);
 
             }
         }
 
     }
-    
 
     class LoginButtonListener implements ActionListener {
 
@@ -127,6 +126,4 @@ public class MainMenuController {
         return calendar_frame;
     }
 
-    
-    
 }

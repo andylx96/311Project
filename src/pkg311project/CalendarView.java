@@ -38,5 +38,4 @@ public class CalendarView extends JPanel {
         this.calendar = calendar;
     }
     
-    
 }
