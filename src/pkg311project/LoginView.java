@@ -5,6 +5,8 @@
  */
 package pkg311project;
 
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -22,23 +24,36 @@ public class LoginView extends JPanel {
     JTextArea username, password;
     JButton loginButton;
     JComboBox<String> usernameCombo;
-    
-    
+
+    GridBagConstraints gbc = new GridBagConstraints();
+
     public LoginView() {
-        setLayout(new GridLayout(10, 3));
+
+        setLayout(new GridBagLayout());
         loginStatus = new JLabel("Please Login.");
         loginButton = new JButton("Login");
         username = new JTextArea("Username");
         password = new JTextArea("Password");
         hint = new JLabel("The Default Username and Password is, Username/Password");
         usernameCombo = new JComboBox();
-     
-        
-        add(loginStatus);
-        add(hint);
-        add(usernameCombo);
-        add(password);
-        add(loginButton);
+
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        add(loginStatus, gbc);
+        gbc.gridx = 0;
+        gbc.gridy = 1;
+        add(hint, gbc);
+        gbc.gridx = 0;
+        gbc.gridy = 2;
+        add(usernameCombo, gbc);
+        gbc.gridx = 0;
+        gbc.gridy = 3;
+        add(password, gbc);
+        gbc.gridx = 0;
+        gbc.gridy = 4;
+        add(loginButton, gbc);
     }
 
     public JLabel getLoginStatus() {

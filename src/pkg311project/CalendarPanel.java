@@ -45,6 +45,8 @@ public class CalendarPanel extends JPanel {
         repaint();
     }
 
+    
+    
     public void removeCalendarAppointView() {
         if (this.cap_view != null) {
             this.remove(cap_view);

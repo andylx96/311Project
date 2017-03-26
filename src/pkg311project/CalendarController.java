@@ -18,16 +18,16 @@ public class CalendarController {
     CalendarFrame calendar_frame;
     CalendarPanel calendar_panel;
     MainMenuController mm_controller;
+    CalendarAppointView calendar_appoint_view;
 
     CalendarController(CalendarModel calendar_model, CalendarFrame calendar_frame) {
         this.calendar_model = calendar_model;
         this.calendar_frame = calendar_frame;
+        calendar_appoint_view = new CalendarAppointView();
 
+        calendar_frame.getPanel().getCalendar_view().getAppointments().addActionListener(new AppointmentButtonListener());
+        calendar_appoint_view.getCreateAppoint().addActionListener(new CalendarCreateButtonListener());
         
-        
-        calendar_frame.getPanel().getCalendar_view().getAppointments().addActionListener(new AppointmentButton());
-//        calendar_frame.getPanel().getCalendar_view().getCalendar().addActionListener(new AppointmentButton());
-
 //        c_view.getCalendar().addActionListener(new CalendarButton());
     }
 
@@ -35,20 +35,23 @@ public class CalendarController {
         System.out.println("HELLO");
     }
 
-    class AppointmentButton implements ActionListener {
+    class AppointmentButtonListener implements ActionListener {
 
         @Override
         public void actionPerformed(ActionEvent e) {
             calendar_frame.getPanel().getCalendar_view().getAppointments().setVisible(false);
             calendar_frame.getPanel().getCalendar_view().getCalendar().setVisible(true);
             System.out.println("saved");
+
+            calendar_frame.switchToCalendarAppointView(calendar_appoint_view);
+
         }
     }
 
-    class CalendarButtonListener implements ActionListener {
+    class CalendarCreateButtonListener implements ActionListener {
 
         public void actionPerformed(ActionEvent e) {
-
+            calendar_appoint_view.getStatus().setText("Account Created!");
         }
     }
 

@@ -19,7 +19,6 @@ public class CalendarView extends JPanel {
         calendar = new JButton("Calendar");
         add(appointments);
         add(calendar);
-        calendar.setVisible(false);
     }
 
     public JButton getAppointments() {
