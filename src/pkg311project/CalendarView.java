@@ -39,6 +39,7 @@ public class CalendarView extends JPanel {
         add(scroll, BorderLayout.CENTER);
     }
 
+    
     public JTable getTable() {
         return table;
     }
