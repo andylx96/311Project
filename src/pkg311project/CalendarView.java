@@ -29,6 +29,7 @@ public class CalendarView extends JPanel {
 
     JLabel hi = new JLabel("hi");
 
+    
     public CalendarView() {
         setLayout(new BorderLayout());
 
