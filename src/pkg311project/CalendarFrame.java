@@ -12,18 +12,19 @@ import javax.swing.JFrame;
  * @author ajl5735
  */
 public class CalendarFrame extends JFrame {
+
     CalendarModel model;
     CalendarPanel panel;
-    
-    public CalendarFrame(CalendarModel model){
-    super("Calendar");
-    this.model = model;
-    
-       setSize(700, 500);
+
+    public CalendarFrame(CalendarModel model) {
+        super("Calendar");
+        this.model = model;
+
+        setSize(700, 500);
         panel = new CalendarPanel();
         setLocationRelativeTo(null);
         add(panel);
-    
+
     }
 
     public CalendarPanel getPanel() {
@@ -33,17 +34,19 @@ public class CalendarFrame extends JFrame {
     public void setPanel(CalendarPanel panel) {
         this.panel = panel;
     }
-    
+
     public void switchToCalendar(CalendarView calendar_view) {
+
+        panel.removeCalendarAppointView();
         panel.removeCalendarView();
         panel.addCalendarView(calendar_view);
     }
-    
-    public void switchToCalendarAppointView(CalendarAppointView cap_view)
-    {
+
+    public void switchToCalendarAppointView(CalendarAppointView cap_view) {
+
+        panel.removeCalendarAppointView();
         panel.removeCalendarView();
         panel.addCalendarAppointView(cap_view);
     }
-    
-    
+
 }

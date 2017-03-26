@@ -17,12 +17,33 @@ public class CalendarPanel extends JPanel {
 
     CalendarView calendar_view;
     CalendarAppointView cap_view;
+    CalendarMenuPanel calendar_menuPanel;
+
 
     public CalendarPanel() {
         setLayout(new BorderLayout());
         calendar_view = new CalendarView();
+        calendar_menuPanel = new CalendarMenuPanel();
         add(calendar_view, BorderLayout.CENTER);
+        add(calendar_menuPanel, BorderLayout.NORTH);
+        
 
+    }
+
+    public CalendarAppointView getCap_view() {
+        return cap_view;
+    }
+
+    public void setCap_view(CalendarAppointView cap_view) {
+        this.cap_view = cap_view;
+    }
+
+    public CalendarMenuPanel getCalendar_menuPanel() {
+        return calendar_menuPanel;
+    }
+
+    public void setCalendar_menuPanel(CalendarMenuPanel calendar_menuPanel) {
+        this.calendar_menuPanel = calendar_menuPanel;
     }
 
     public void addCalendarView(CalendarView calendar_view) {
@@ -52,7 +73,8 @@ public class CalendarPanel extends JPanel {
             this.remove(cap_view);
         }
     }
-
+    
+    
     public CalendarView getCalendar_view() {
         return calendar_view;
     }

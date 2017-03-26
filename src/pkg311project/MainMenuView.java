@@ -25,7 +25,7 @@ public class MainMenuView extends JPanel {
         add(calendarButton, BorderLayout.EAST);
         add(contactsButton, BorderLayout.WEST);
         add(picture, BorderLayout.CENTER);
-        add(testButton, BorderLayout.SOUTH);
+//        add(testButton, BorderLayout.SOUTH);
         
     }
 
