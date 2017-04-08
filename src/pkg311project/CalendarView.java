@@ -19,8 +19,8 @@ import javax.swing.table.TableRowSorter;
 
 public class CalendarView extends JPanel {
 
-    Object[][] data = {{"Task", "Date"}, {"Task", "Date"}};
-    String[] columnName = {"Task", "Date"};
+    Object[][] data = {{"Task", "Date", "DateENd"}, {"Task", "Date", "DateEnd"}};
+    String[] columnName = {"Name", "Start", "End"};
     DefaultTableModel model = new DefaultTableModel(data, columnName);
     JTable table = new JTable(model);
     private TableRowSorter<TableModel> rowSorter
@@ -28,6 +28,8 @@ public class CalendarView extends JPanel {
     JScrollPane scroll;
 
     JLabel hi = new JLabel("hi");
+    
+    JButton save = new JButton("Save Edits");
 
     
     public CalendarView() {
@@ -38,6 +40,16 @@ public class CalendarView extends JPanel {
         table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         scroll = new JScrollPane(table);
         add(scroll, BorderLayout.CENTER);
+        add(save, BorderLayout.SOUTH);
+        
+    }
+
+    public JButton getSave() {
+        return save;
+    }
+
+    public void setSave(JButton save) {
+        this.save = save;
     }
 
     
@@ -49,14 +61,6 @@ public class CalendarView extends JPanel {
         this.table = table;
     }
 
-    public void addTable() {
-        add(new JScrollPane(table), BorderLayout.SOUTH);
-//        not sure how to stop creating a new scroll pane
-    }
-
-    public void removeTable() {
-//        remove the table
-    }
 
     public DefaultTableModel getModel() {
         return model;
