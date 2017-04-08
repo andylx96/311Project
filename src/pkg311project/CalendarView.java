@@ -57,4 +57,12 @@ public class CalendarView extends JPanel {
     public void removeTable() {
 //        remove the table
     }
+
+    public DefaultTableModel getModel() {
+        return model;
+    }
+
+    public void setModel(DefaultTableModel model) {
+        this.model = model;
+    }
 }
