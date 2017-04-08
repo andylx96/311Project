@@ -41,7 +41,7 @@ public class CalendarController {
         calendar_frame.getPanel().getCalendar_menuPanel().getCalendar().addActionListener(new CalendarButtonListener());
         calendar_frame.getPanel().getCalendar_menuPanel().getMain().addActionListener(new SwitchToMainCalendarButtonListener());
         calendar_frame.getPanel().getCalendar_view().getSave().addActionListener(new AppointmentSaveButtonListener());
-
+        updateArrayAndTable();
     }
 
     class SwitchToAppointmentButtonListener implements ActionListener {
