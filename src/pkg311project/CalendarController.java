@@ -6,6 +6,8 @@
 package pkg311project;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.FileNotFoundException;
@@ -13,8 +15,11 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.GregorianCalendar;
 import java.util.Scanner;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableCellRenderer;
 
 /**
  *
@@ -43,7 +48,15 @@ public class CalendarController {
         calendar_frame.getPanel().getCalendar_menuPanel().getCalendar().addActionListener(new CalendarButtonListener());
         calendar_frame.getPanel().getCalendar_menuPanel().getMain().addActionListener(new SwitchToMainCalendarButtonListener());
         calendar_frame.getPanel().getCalendar_view().getSave().addActionListener(new AppointmentSaveButtonListener());
+
+        calendar.getBtnPrev().addActionListener(new btnPrev_Action());
+        calendar.getBtnNext().addActionListener(new btnNext_Action());
+        calendar.getCmbYear().addActionListener(new cmbYear_Action());
         updateArrayAndTable();
+
+        //Refresh calendar
+        refreshCalendar(calendar.realMonth, calendar.realYear); //Refresh calendar
+
     }
 
     class SwitchToAppointmentButtonListener implements ActionListener {
@@ -86,7 +99,6 @@ public class CalendarController {
         @Override
         public void actionPerformed(ActionEvent e) {
 
-            
             calendar_frame.switchToCalendar(calendar);
             //JOptionPane.showMessageDialog(null, "Not Supported Yet");
         }
@@ -170,5 +182,105 @@ public class CalendarController {
 
     }
 //    }
+
+    public void refreshCalendar(int month, int year) {
+        //Variables
+        String[] months = {"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
+        int nod, som; //Number Of Days, Start Of Month
+
+        //Allow/disallow buttons
+        calendar.btnPrev.setEnabled(true);
+        calendar.btnNext.setEnabled(true);
+        if (month == 0 && year <= calendar.realYear - 10) {
+            calendar.btnPrev.setEnabled(false);
+        } //Too early
+        if (month == 11 && year >= calendar.realYear + 100) {
+            calendar.btnNext.setEnabled(false);
+        } //Too late
+        calendar.lblMonth.setText(months[month]); //Refresh the month label (at the top)
+        calendar.lblMonth.setBounds(160 - calendar.lblMonth.getPreferredSize().width / 2, 25, 180, 25); //Re-align label with calendar
+        calendar.cmbYear.setSelectedItem(String.valueOf(year)); //Select the correct year in the combo box
+
+        //Clear table
+        for (int i = 0; i < 6; i++) {
+            for (int j = 0; j < 7; j++) {
+                calendar.mtblCalendar.setValueAt(null, i, j);
+            }
+        }
+
+        //Get first day of month and number of days
+        GregorianCalendar cal = new GregorianCalendar(year, month, 1);
+        nod = cal.getActualMaximum(GregorianCalendar.DAY_OF_MONTH);
+        som = cal.get(GregorianCalendar.DAY_OF_WEEK);
+
+        //Draw calendar
+        for (int i = 1; i <= nod; i++) {
+            int row = new Integer((i + som - 2) / 7);
+            int column = (i + som - 2) % 7;
+            calendar.mtblCalendar.setValueAt(i, row, column);
+        }
+
+        //Apply renderers
+        calendar.tblCalendar.setDefaultRenderer(calendar.tblCalendar.getColumnClass(0), new tblCalendarRenderer());
+        calendar_frame.switchToCalendar(calendar);
+    }
+
+    class tblCalendarRenderer extends DefaultTableCellRenderer {
+
+        public Component getTableCellRendererComponent(JTable table, Object value, boolean selected, boolean focused, int row, int column) {
+            super.getTableCellRendererComponent(table, value, selected, focused, row, column);
+            if (column == 0 || column == 6) { //Week-end
+                setBackground(new Color(255, 220, 220));
+            } else { //Week
+                setBackground(new Color(255, 255, 255));
+            }
+            if (value != null) {
+                if (Integer.parseInt(value.toString()) == calendar.realDay && calendar.currentMonth == calendar.realMonth && calendar.currentYear == calendar.realYear) { //Today
+                    setBackground(new Color(220, 220, 255));
+                }
+            }
+            setBorder(null);
+            setForeground(Color.black);
+            return this;
+        }
+    }
+
+    class btnPrev_Action implements ActionListener {
+
+        public void actionPerformed(ActionEvent e) {
+            if (calendar.currentMonth == 0) { //Back one year
+                calendar.currentMonth = 11;
+                calendar.currentYear -= 1;
+            } else { //Back one month
+                calendar.currentMonth -= 1;
+            }
+            refreshCalendar(calendar.currentMonth, calendar.currentYear);
+        }
+    }
+
+    class btnNext_Action implements ActionListener {
+
+        public void actionPerformed(ActionEvent e) {
+            if (calendar.currentMonth == 11) { //Foward one year
+                calendar.currentMonth = 0;
+                calendar.currentYear += 1;
+            } else { //Foward one month
+                calendar.currentMonth += 1;
+            }
+            refreshCalendar(calendar.currentMonth, calendar.currentYear);
+        }
+    }
+
+    class cmbYear_Action implements ActionListener {
+
+        public void actionPerformed(ActionEvent e) {
+            if (calendar.cmbYear.getSelectedItem() != null) {
+                String b = calendar.cmbYear.getSelectedItem().toString();
+                calendar.currentYear = Integer.parseInt(b);
+                refreshCalendar(calendar.currentMonth, calendar.currentYear);
+                
+            }
+        }
+    }
 
 }
