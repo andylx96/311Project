@@ -39,6 +39,7 @@ public class CalendarFrame extends JFrame {
 
         panel.removeCalendarAppointView();
         panel.removeCalendarView();
+        panel.removeCalendar();
         panel.addCalendarView(calendar_view);
     }
 
@@ -46,6 +47,7 @@ public class CalendarFrame extends JFrame {
 
         panel.removeCalendarAppointView();
         panel.removeCalendarView();
+        panel.removeCalendar();
         panel.addCalendarAppointView(cap_view);
     }
 
@@ -53,6 +55,7 @@ public class CalendarFrame extends JFrame {
 
         panel.removeCalendarAppointView();
         panel.removeCalendarView();
+        panel.removeCalendar();
         panel.addCalendar(calendar);
     }
 

@@ -36,6 +36,7 @@ public class CalendarController {
         this.calendar_model = calendar_model;
         this.calendar_frame = calendar_frame;
         calendar_appoint_view = new CalendarAppointView();
+        calendar = new CalendarOverView();
 
         calendar_frame.getPanel().getCalendar_menuPanel().getAppointments().addActionListener(new SwitchToAppointmentButtonListener());
         calendar_appoint_view.getCreateAppoint().addActionListener(new CalendarCreateButtonListener());
