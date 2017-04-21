@@ -27,6 +27,7 @@ public class CalendarController {
     CalendarPanel calendar_panel;
     MainMenuController mm_controller;
     CalendarAppointView calendar_appoint_view;
+    Calendar cal;
 
     ArrayList<Appointment> appointmentList = new ArrayList();
 
@@ -84,7 +85,9 @@ public class CalendarController {
         @Override
         public void actionPerformed(ActionEvent e) {
 
-            JOptionPane.showMessageDialog(null, "Not Supported Yet");
+            
+            calendar_frame.switchToCalendar(cal);
+            //JOptionPane.showMessageDialog(null, "Not Supported Yet");
         }
     }
 
