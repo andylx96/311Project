@@ -18,6 +18,7 @@ public class CalendarPanel extends JPanel {
     CalendarView calendar_view;
     CalendarAppointView cap_view;
     CalendarMenuPanel calendar_menuPanel;
+    CalendarOverView calendar;
 
 
     public CalendarPanel() {
@@ -66,6 +67,34 @@ public class CalendarPanel extends JPanel {
         repaint();
     }
 
+    
+    
+    
+    
+    
+    
+    
+    
+      public void removeCalendar() {
+        if (this.calendar != null) {
+            this.remove(calendar);
+        }
+    }
+
+    public void addCalendar(CalendarOverView calendar) {
+        this.calendar = calendar;
+        add(calendar, BorderLayout.CENTER);
+        revalidate();
+        repaint();
+    }
+    
+    
+    
+    
+    
+    
+    
+    
     
     
     public void removeCalendarAppointView() {

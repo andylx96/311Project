@@ -35,7 +35,7 @@ public class CalendarFrame extends JFrame {
         this.panel = panel;
     }
 
-    public void switchToCalendar(CalendarView calendar_view) {
+    public void switchToCalendarView(CalendarView calendar_view) {
 
         panel.removeCalendarAppointView();
         panel.removeCalendarView();
@@ -47,6 +47,13 @@ public class CalendarFrame extends JFrame {
         panel.removeCalendarAppointView();
         panel.removeCalendarView();
         panel.addCalendarAppointView(cap_view);
+    }
+
+    public void switchToCalendar(CalendarOverView calendar) {
+
+        panel.removeCalendarAppointView();
+        panel.removeCalendarView();
+        panel.addCalendar(calendar);
     }
 
 }

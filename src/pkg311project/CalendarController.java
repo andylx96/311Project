@@ -27,7 +27,7 @@ public class CalendarController {
     CalendarPanel calendar_panel;
     MainMenuController mm_controller;
     CalendarAppointView calendar_appoint_view;
-    Calendar cal;
+    CalendarOverView calendar;
 
     ArrayList<Appointment> appointmentList = new ArrayList();
 
@@ -86,7 +86,7 @@ public class CalendarController {
         public void actionPerformed(ActionEvent e) {
 
             
-            calendar_frame.switchToCalendar(cal);
+            calendar_frame.switchToCalendar(calendar);
             //JOptionPane.showMessageDialog(null, "Not Supported Yet");
         }
     }
@@ -96,7 +96,7 @@ public class CalendarController {
         @Override
         public void actionPerformed(ActionEvent e) {
 
-            calendar_frame.switchToCalendar(calendar_frame.getPanel().getCalendar_view());
+            calendar_frame.switchToCalendarView(calendar_frame.getPanel().getCalendar_view());
         }
     }
 
@@ -105,7 +105,7 @@ public class CalendarController {
         @Override
         public void actionPerformed(ActionEvent e) {
 
-            calendar_frame.switchToCalendar(calendar_frame.getPanel().getCalendar_view());
+            calendar_frame.switchToCalendarView(calendar_frame.getPanel().getCalendar_view());
 
             tableToFile(-1);
             updateArrayAndTable();

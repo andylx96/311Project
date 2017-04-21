@@ -16,7 +16,7 @@ import java.awt.*;
 import java.awt.event.*;
 import java.util.*;
 
-public class Calendar{
+public class CalendarOverView extends JPanel{
 	static JLabel lblMonth, lblYear;
 	static JButton btnPrev, btnNext;
 	static JTable tblCalendar;
@@ -28,37 +28,38 @@ public class Calendar{
 	static JPanel pnlCalendar;
 	static int realYear, realMonth, realDay, currentYear, currentMonth;
 
-	public static void main (String args[]){
+//	public static void main (String args[]){
 		//Look and feel
-		try {UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());}
-		catch (ClassNotFoundException e) {}
-		catch (InstantiationException e) {}
-		catch (IllegalAccessException e) {}
-		catch (UnsupportedLookAndFeelException e) {}
+//		try {UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());}
+//		catch (ClassNotFoundException e) {}
+//		catch (InstantiationException e) {}
+//		catch (IllegalAccessException e) {}
+//		catch (UnsupportedLookAndFeelException e) {}
 
 		//Prepare frame
-		frmMain = new JFrame ("Gestionnaire de clients"); //Create frame
-		frmMain.setSize(330, 375); //Set size to 400x400 pixels
-		pane = frmMain.getContentPane(); //Get content pane
-		pane.setLayout(null); //Apply null layout
-		frmMain.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //Close when X is clicked
+//		frmMain = new JFrame ("Gestionnaire de clients"); //Create frame
+//		frmMain.setSize(330, 375); //Set size to 400x400 pixels
+//		pane = frmMain.getContentPane(); //Get content pane
+//		pane.setLayout(null); //Apply null layout
+//		frmMain.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //Close when X is clicked
 
+        CalendarOverView(){
 		//Create controls
 		lblMonth = new JLabel ("January");
 		lblYear = new JLabel ("Change year:");
 		cmbYear = new JComboBox();
 		btnPrev = new JButton ("<<");
 		btnNext = new JButton (">>");
-		mtblCalendar = new DefaultTableModel()
-                {public boolean isCellEditable(int rowIndex, int mColIndex){return false;
-                }
-                };
-		tblCalendar = new JTable(mtblCalendar);
-		stblCalendar = new JScrollPane(tblCalendar);
-		pnlCalendar = new JPanel(null);
-
-		//Set border
-		pnlCalendar.setBorder(BorderFactory.createTitledBorder("Calendar"));
+		mtblCalendar = new DefaultTableModel();
+//                {public boolean isCellEditable(int rowIndex, int mColIndex){return false;
+//                }
+//                };
+//		tblCalendar = new JTable(mtblCalendar);
+//		stblCalendar = new JScrollPane(tblCalendar);
+//		pnlCalendar = new JPanel(null);
+//
+//		//Set border
+//		pnlCalendar.setBorder(BorderFactory.createTitledBorder("Calendar"));
 		
 		//Register action listeners
 		btnPrev.addActionListener(new btnPrev_Action());
