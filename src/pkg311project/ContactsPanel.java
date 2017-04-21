@@ -26,6 +26,11 @@ public class ContactsPanel extends JPanel {
         
     }
 
+    public ContactsView getContact_view() {
+        return contact_view;
+    }
+    
+
     public void addContactView(ContactsView contact_view) {
         this.contact_view = contact_view;
         add(contact_view, BorderLayout.CENTER);

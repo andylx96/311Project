@@ -5,8 +5,16 @@
  */
 package pkg311project;
 
+import java.awt.BorderLayout;
+import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.ListSelectionModel;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
 
 /**
  *
@@ -14,11 +22,53 @@ import javax.swing.JPanel;
  */
 public class ContactsView extends JPanel {
 
-    JLabel label;
+        Object[][] data = {{"", "", ""}, {"", "", ""}};
+        String[] columnName = {"Name", "Phone Number", "Extra"};
+        DefaultTableModel model = new DefaultTableModel(data, columnName);
+        JTable table = new JTable(model);
+        private TableRowSorter<TableModel> rowSorter
+            = new TableRowSorter<>(table.getModel());
+        JScrollPane scroll;
+
+        JLabel hi = new JLabel("hi");
+
+        JButton save = new JButton("Save Edits");
+        JButton add = new JButton("Add Contacts");
 
     public ContactsView() {
-        label = new JLabel("Contact Stuff");
-        add(label);
+        setLayout(new BorderLayout());
+
+        table.setRowSorter(rowSorter);
+        table.setRowSelectionAllowed(true);
+        table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        scroll = new JScrollPane(table);
+        add(scroll, BorderLayout.CENTER);
+//        add(save, BorderLayout.SOUTH);
+        add(add, BorderLayout.SOUTH);
     }
 
+    public JButton getAdd() {
+        return add;
+    }
+
+    public void setAdd(JButton add) {
+        this.add = add;
+    }
+    
+    public JTable getTable() {
+        return table;
+    }
+
+    public void setTable(JTable table) {
+        this.table = table;
+    }
+    
+    public DefaultTableModel getModel() {
+        return model;
+    }
+
+    public void setModel(DefaultTableModel model) {
+        this.model = model;
+    }
+    
 }

@@ -63,14 +63,13 @@ public class CalendarController {
 //            appointmentList.add(new Appointment(calendar_appoint_view.getAppoint_name().toString(), calendar_appoint_view.getAppoint_startTime().toString(),
 //                    calendar_appoint_view.getAppoint_endTime().toString()));
 
-    FileWriter fout;
+            FileWriter fout;
             try {
                 fout = new FileWriter("src/pkg311project/appointment.txt", true);
-                fout.write(calendar_appoint_view.getAppoint_name().getText()+"\n");
-                fout.write(calendar_appoint_view.getAppoint_startTime().getText()+"\n");
-                fout.write(calendar_appoint_view.getAppoint_endTime().getText()+"\n");
-                
-                
+                fout.write(calendar_appoint_view.getAppoint_name().getText() + "\n");
+                fout.write(calendar_appoint_view.getAppoint_startTime().getText() + "\n");
+                fout.write(calendar_appoint_view.getAppoint_endTime().getText() + "\n");
+
                 fout.close();
                 fout.flush();
             } catch (IOException ex) {
@@ -97,17 +96,17 @@ public class CalendarController {
             calendar_frame.switchToCalendar(calendar_frame.getPanel().getCalendar_view());
         }
     }
-    
-        class AppointmentSaveButtonListener implements ActionListener {
+
+    class AppointmentSaveButtonListener implements ActionListener {
 
         @Override
         public void actionPerformed(ActionEvent e) {
 
             calendar_frame.switchToCalendar(calendar_frame.getPanel().getCalendar_view());
-            
+
             tableToFile(-1);
             updateArrayAndTable();
-            
+
         }
     }
 
@@ -140,37 +139,32 @@ public class CalendarController {
         } catch (IOException ex) {
         }
     }
-    
-    
-    
-        public void tableToFile(int tempRow) {
+
+    public void tableToFile(int tempRow) {
 
 //        if (calendar_frame.getPanel().getCalendar_view().getTable().getSelectedRow() != -1) {
-
 //            String tempString = calendar_frame.getPanel().getCalendar_view().getSearchArea().getText();
 //            calendar_frame.getPanel().getCalendar_view().getSearchArea().setText("");
+        FileWriter fout;
+        try {
+            fout = new FileWriter("src/pkg311project/appointment.txt");
+            for (int i = 0; i < calendar_frame.getPanel().getCalendar_view().getTable().getRowCount(); i++) {
 
-    FileWriter fout;
-            try {
-                fout = new FileWriter("src/pkg311project/appointment.txt");
-                for (int i = 0; i < calendar_frame.getPanel().getCalendar_view().getTable().getRowCount(); i++) {
+                for (int j = 0; j < calendar_frame.getPanel().getCalendar_view().getTable().getColumnCount(); j++) {
 
-                    for (int j = 0; j < calendar_frame.getPanel().getCalendar_view().getTable().getColumnCount(); j++) {
-
-                        if (i != tempRow) {
-                            fout.write(calendar_frame.getPanel().getCalendar_view().getTable().getValueAt(i, j) + "\n");
-                        }
+                    if (i != tempRow) {
+                        fout.write(calendar_frame.getPanel().getCalendar_view().getTable().getValueAt(i, j) + "\n");
                     }
                 }
+            }
 //                viewAll_view.getSearchArea().setText(tempString);
 //                c_view.getCreateAccount().setText("Account Created");
-                fout.close();
-                fout.flush();
-            } catch (IOException ex) {
-            }
-
+            fout.close();
+            fout.flush();
+        } catch (IOException ex) {
         }
+
+    }
 //    }
-    
 
 }
