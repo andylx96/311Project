@@ -24,7 +24,7 @@ public class CalendarOverView extends JPanel {
     JComboBox cmbYear;
     DefaultTableModel mtblCalendar; //Table model
     JScrollPane stblCalendar; //The scrollpane
-    JPanel pnlCalendar;
+    JPanel pnlCalendar, topMenu;
     int realYear, realMonth, realDay, cYear, cMonth;
 
 
@@ -40,19 +40,21 @@ public class CalendarOverView extends JPanel {
 		tblCalendar = new JTable(mtblCalendar);
 		stblCalendar = new JScrollPane(tblCalendar);
 		pnlCalendar = new JPanel(null);
-
+                topMenu = new JPanel();
+                
 		//Set border
 		pnlCalendar.setBorder(BorderFactory.createTitledBorder("Calendar"));
-
+setLayout(new BorderLayout());
 
 		
-
-        add(Month);
-        add(Year);
-        add(cmbYear);
-        add(btnprev);
-        add(btnnext);
-        add(stblCalendar);
+topMenu.add(btnprev);
+        
+        topMenu.add(Month);
+        topMenu.add(Year);
+        topMenu.add(cmbYear);
+        topMenu.add(btnnext);
+        add(topMenu, BorderLayout.NORTH);
+        add(stblCalendar, BorderLayout.CENTER);
 	
 		//Set bounds
 		pnlCalendar.setBounds(0, 0, 320, 335);
@@ -87,6 +89,9 @@ public class CalendarOverView extends JPanel {
 		tblCalendar.setColumnSelectionAllowed(true);
 		tblCalendar.setRowSelectionAllowed(true);
 		tblCalendar.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+                
+                //uneditable
+                tblCalendar.setDefaultEditor(Object.class, null);
 
 		//Set row/column count
 		tblCalendar.setRowHeight(58);

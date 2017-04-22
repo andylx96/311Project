@@ -1,10 +1,6 @@
 Enter Appointment Name
+dd/mm/yyyy
 Start Time
 AM
 End Time
-AM
-aaa
-12222
-PM
-11313
 AM

@@ -19,8 +19,8 @@ import javax.swing.table.TableRowSorter;
 
 public class CalendarView extends JPanel {
 
-    Object[][] data = {{"Task", "DateStart", "AM", "DateEnd", "PM"}, {"Task", "DateStart", "AM", "DateEnd", "PM"}};
-    String[] columnName = {"Name", "Start", "AM/PM", "End", "AM/PM"};
+    Object[][] data = {{"Task","Date", "DateStart", "AM", "DateEnd", "PM"}, {"Task","Date", "DateStart", "AM", "DateEnd", "PM"}};
+    String[] columnName = {"Name","Date",  "Start", "AM/PM", "End", "AM/PM"};
     DefaultTableModel model = new DefaultTableModel(data, columnName);
     JTable table = new JTable(model);
     private TableRowSorter<TableModel> rowSorter

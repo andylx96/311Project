@@ -16,25 +16,25 @@ import javax.swing.JPanel;
  */
 public class CalendarMenuPanel extends JPanel {
 
-    JButton appointments, calendar, main;
+    JButton createAppt, calendar, appointment;
 
     CalendarMenuPanel() {
 
-        appointments = new JButton("Appointments");
+        createAppt = new JButton("Create Appointment");
         calendar = new JButton("Calendar");
-        main = new JButton("Main");
-        add(main);
-        add(appointments);
+        appointment = new JButton("Appointments");
+        add(appointment);
+        add(createAppt);
 
         add(calendar);
     }
 
     public JButton getAppointments() {
-        return appointments;
+        return createAppt;
     }
 
     public void setAppointments(JButton appointments) {
-        this.appointments = appointments;
+        this.createAppt = appointments;
     }
 
     public JButton getCalendar() {
@@ -46,10 +46,10 @@ public class CalendarMenuPanel extends JPanel {
     }
 
     public JButton getMain() {
-        return main;
+        return appointment;
     }
 
     public void setMain(JButton main) {
-        this.main = main;
+        this.appointment = main;
     }
 }

@@ -10,8 +10,8 @@ import javax.swing.JTextField;
 
 public class CalendarAppointView extends JPanel {
 
-    JLabel status;
-    JTextField appoint_name, appoint_startTime, appoint_endTime;
+    JLabel status, dateLabel;
+    JTextField appoint_name, appoint_startTime, appoint_endTime, date;
     JButton createAppoint;
     JComboBox<String> am_pm_startCombo, am_pm_endCombo;
     String[] am_pmArray = {"AM", "PM"};
@@ -26,41 +26,56 @@ public class CalendarAppointView extends JPanel {
         am_pm_startCombo = new JComboBox(am_pmArray);
         am_pm_endCombo = new JComboBox(am_pmArray);
         createAppoint = new JButton("Create Appointment");
-
+        dateLabel = new JLabel("Date:(dd/mm/yyyy) Format");
+        date = new JTextField("dd/mm/yyyy");
         status = new JLabel();
+        
+        gbc.ipady = 30;
 
         gbc.fill = GridBagConstraints.HORIZONTAL;
         gbc.gridx = 0;
         gbc.gridy = 0;
+        gbc.gridwidth = 2;
         add(appoint_name, gbc);
-
+        
+        gbc.gridwidth = 1;
         gbc.gridx = 0;
         gbc.gridy = 1;
+        add(dateLabel, gbc);
+        
+        gbc.weightx = 1;
+        gbc.gridx = 1;
+        gbc.gridy = 1;
+        add(date, gbc);
 
+        gbc.gridwidth = 1;
+        gbc.gridx = 0;
+        gbc.gridy = 2;
+        gbc.weightx = 0;
         add(appoint_startTime, gbc);
 
         gbc.gridx = 1;
-        gbc.gridy = 1;
+        gbc.gridy = 2;
 
         add(am_pm_startCombo, gbc);
 
         gbc.gridx = 0;
-        gbc.gridy = 2;
+        gbc.gridy = 3;
 
         add(appoint_endTime, gbc);
 
         gbc.gridx = 1;
-        gbc.gridy = 2;
+        gbc.gridy = 3;
 
         add(am_pm_endCombo, gbc);
 
         gbc.gridx = 0;
-        gbc.gridy = 3;
-
+        gbc.gridy = 4;
+gbc.gridwidth = 2;
         add(createAppoint, gbc);
 
         gbc.gridx = 0;
-        gbc.gridy = 4;
+        gbc.gridy = 5;
         add(status, gbc);
     }
 
@@ -126,6 +141,22 @@ public class CalendarAppointView extends JPanel {
 
     public void setAm_pmArray(String[] am_pmArray) {
         this.am_pmArray = am_pmArray;
+    }
+
+    public JLabel getDateLabel() {
+        return dateLabel;
+    }
+
+    public void setDateLabel(JLabel dateLabel) {
+        this.dateLabel = dateLabel;
+    }
+
+    public JTextField getDate() {
+        return date;
+    }
+
+    public void setDate(JTextField date) {
+        this.date = date;
     }
 
 }

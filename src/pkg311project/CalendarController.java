@@ -84,6 +84,8 @@ public class CalendarController {
             try {
                 fout = new FileWriter("src/pkg311project/appointment.txt", true);
                 fout.write(calendar_appoint_view.getAppoint_name().getText() + "\n");
+                
+                fout.write(calendar_appoint_view.getDate().getText() + "\n");
                 fout.write(calendar_appoint_view.getAppoint_startTime().getText() + "\n");
                 fout.write(calendar_appoint_view.getAm_pm_startCombo().getSelectedItem().toString() + "\n");
                 fout.write(calendar_appoint_view.getAppoint_endTime().getText() + "\n");
@@ -152,7 +154,7 @@ public class CalendarController {
 
     public void updateArrayAndTable() {
 
-        String tempName, tempStart, tempStartAmPm, tempEnd, tempEndAmPm;
+        String tempName, tempDate, tempStart, tempStartAmPm, tempEnd, tempEndAmPm;
         appointmentList.clear();
         calendar_frame.getPanel().getCalendar_view().getModel().setRowCount(0);
         try {
@@ -162,14 +164,15 @@ public class CalendarController {
             while (scan.hasNextLine()) {
 
                 tempName = scan.nextLine();
+                tempDate = scan.nextLine();
                 tempStart = scan.nextLine();
                 tempStartAmPm = scan.nextLine();
                 tempEnd = scan.nextLine();
                 tempEndAmPm = scan.nextLine();
 
-                appointmentList.add(new Appointment(tempName, tempStart, tempStartAmPm, tempEnd, tempEndAmPm));
+                appointmentList.add(new Appointment(tempName, tempDate, tempStart, tempStartAmPm, tempEnd, tempEndAmPm));
 
-                calendar_frame.getPanel().getCalendar_view().getModel().addRow(new Object[]{tempName, tempStart, tempStartAmPm, tempEnd, tempEndAmPm});
+                calendar_frame.getPanel().getCalendar_view().getModel().addRow(new Object[]{tempName, tempDate, tempStart, tempStartAmPm, tempEnd, tempEndAmPm});
 
             }
             fin.close();
@@ -177,7 +180,7 @@ public class CalendarController {
 
         } catch (FileNotFoundException ex) {
 
-            JOptionPane.showMessageDialog(null, ex);
+            JOptionPane.showMessageDialog(null, "No Appointments Were Found!");
         } catch (IOException ex) {
         }
     }

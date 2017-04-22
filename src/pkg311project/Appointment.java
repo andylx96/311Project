@@ -10,14 +10,15 @@ package pkg311project;
  * @author zabuz
  */
 public class Appointment {
-    String name, startTime, startAmPM, endTime, endAmPm;
+    String name, startTime, startAmPM, endTime, endAmPm, date;
     
-    Appointment(String name, String startTime,String startAmPm, String endTime,String endAmPm){
+    Appointment(String name, String startTime,String startAmPm, String endTime,String endAmPm, String date){
     this.name = name;
     this.startTime = startTime;
     this.startAmPM = startAmPm;
     this.endTime = endTime;
     this.endAmPm = endAmPm;
+    this.date = date;
     
     }
 
