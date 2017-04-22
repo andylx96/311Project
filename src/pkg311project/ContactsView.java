@@ -34,6 +34,8 @@ public class ContactsView extends JPanel {
 
         JButton save = new JButton("Save Edits");
         JButton add = new JButton("Add Contacts");
+        JButton delete = new JButton("Delete Button");
+        JPanel bottomPanel;
 
     public ContactsView() {
         setLayout(new BorderLayout());
@@ -42,9 +44,20 @@ public class ContactsView extends JPanel {
         table.setRowSelectionAllowed(true);
         table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         scroll = new JScrollPane(table);
+        bottomPanel = new JPanel();
+        bottomPanel.add(save);
+        bottomPanel.add(add);
+        bottomPanel.add(delete);
         add(scroll, BorderLayout.CENTER);
-        add(save, BorderLayout.SOUTH);
-        add(add, BorderLayout.NORTH);
+        add(bottomPanel, BorderLayout.SOUTH);
+    }
+
+    public JButton getDelete() {
+        return delete;
+    }
+
+    public void setDelete(JButton delete) {
+        this.delete = delete;
     }
 
     public JButton getAdd() {

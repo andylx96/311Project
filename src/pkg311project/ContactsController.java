@@ -31,7 +31,24 @@ public class ContactsController {
         this.contacts_frame = contacts_frame;
         
         contacts_frame.getPanel().getContact_view().getAdd().addActionListener(new ContactsController.AddButtonListener());
+        contacts_frame.getPanel().getContact_view().getDelete().addActionListener(new ContactsController.ContactDeleteButtonListener());
         updateArrayAndTable();
+    }
+    
+    class ContactDeleteButtonListener implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+
+            int resp = JOptionPane.showConfirmDialog(null, "Are You Sure You Want To Delete This Line?\nThis Will Also Save All Changes Done So Far.");
+            if (resp == JOptionPane.YES_OPTION) {
+                int tempRow = contacts_frame.getPanel().getContact_view().getTable().convertRowIndexToModel(contacts_frame.getPanel().getContact_view().getTable().getSelectedRow());
+                tableToFile(tempRow);
+                updateArrayAndTable();
+            }
+            JOptionPane.showMessageDialog(null, "Deleted!");
+
+        }
     }
     
     class AddButtonListener implements ActionListener {
@@ -91,13 +108,18 @@ public class ContactsController {
         try {
             fout = new FileWriter("src/pkg311project/contact.txt");
             for (int i = 0; i < contacts_frame.getPanel().getContact_view().getTable().getRowCount(); i++) {
-
                 for (int j = 0; j < contacts_frame.getPanel().getContact_view().getTable().getColumnCount(); j++) {
 
                     if (i != tempRow) {
-                        fout.write(contacts_frame.getPanel().getContact_view().getTable().getValueAt(i, j) + "\n");
+                        if(j ==  2){
+                            fout.write(contacts_frame.getPanel().getContact_view().getTable().getValueAt(i, j) + "");
+                            }
+                        else {
+                        fout.write(contacts_frame.getPanel().getContact_view().getTable().getValueAt(i, j) + ",");
+                        }
                     }
                 }
+                fout.write("\n");
             }
             fout.close();
             fout.flush();
