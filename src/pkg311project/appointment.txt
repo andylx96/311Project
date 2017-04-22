@@ -1,36 +1,10 @@
 Enter Appointment Name
 Start Time
+AM
 End Time
-Enter Appointment Name
-Start Time
-End Time
-Enter Appointment Name
-Start Time
-End Time
-Enter Appointment Name
-Start Time
-End Time
-Enter Appointment Name
-Start Time
-End Time
-Enter Appointment Name
-Start Time
-End Time
-fdsaName
-Start Time
-End Time
-Enter Appointment Name
-Start Time
-End Time
-Enter Appointment Name
-Start Time
-End Time
-Enter Appointment Name
-Start Time
-End Time
-Enter Appointment Name
-Start Time
-End Time
-Enter Appointment Name
-srfsrf
-End Time
+AM
+aaa
+12222
+PM
+11313
+AM

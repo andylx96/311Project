@@ -10,12 +10,14 @@ package pkg311project;
  * @author zabuz
  */
 public class Appointment {
-    String name, startTime, endTime;
+    String name, startTime, startAmPM, endTime, endAmPm;
     
-    Appointment(String name, String startTime, String endTime){
+    Appointment(String name, String startTime,String startAmPm, String endTime,String endAmPm){
     this.name = name;
     this.startTime = startTime;
+    this.startAmPM = startAmPm;
     this.endTime = endTime;
+    this.endAmPm = endAmPm;
     
     }
 
@@ -41,6 +43,22 @@ public class Appointment {
 
     public void setEndTime(String endTime) {
         this.endTime = endTime;
+    }
+
+    public String getStartAmPM() {
+        return startAmPM;
+    }
+
+    public void setStartAmPM(String startAmPM) {
+        this.startAmPM = startAmPM;
+    }
+
+    public String getEndAmPm() {
+        return endAmPm;
+    }
+
+    public void setEndAmPm(String endAmPm) {
+        this.endAmPm = endAmPm;
     }
     
 }
