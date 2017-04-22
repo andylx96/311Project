@@ -19,17 +19,18 @@ import javax.swing.table.TableRowSorter;
 
 public class CalendarView extends JPanel {
 
-    Object[][] data = {{"Task", "Date", "DateENd"}, {"Task", "Date", "DateEnd"}};
-    String[] columnName = {"Name", "Start", "End"};
+    Object[][] data = {{"Task", "DateStart","AM", "DateEnd","PM"}, {"Task", "DateStart","AM", "DateEnd","PM"}};
+    String[] columnName = {"Name", "Start", "AM/PM", "End", "AM/PM"};
     DefaultTableModel model = new DefaultTableModel(data, columnName);
     JTable table = new JTable(model);
     private TableRowSorter<TableModel> rowSorter
             = new TableRowSorter<>(table.getModel());
     JScrollPane scroll;
 
-    JLabel hi = new JLabel("hi");
-    
-    JButton save = new JButton("Save Edits");
+  JButton save, delete;
+  JLabel hi;
+  
+  JPanel bottomPanel;
 
     
     public CalendarView() {
@@ -37,10 +38,17 @@ public class CalendarView extends JPanel {
 
         table.setRowSorter(rowSorter);
         table.setRowSelectionAllowed(true);
-        table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION); 
+        bottomPanel = new JPanel();
+        
+    save = new JButton("Save Edits");
+    delete = new JButton("Delete Button");
+        bottomPanel.add(save);
+        bottomPanel.add(delete);
+        hi = new JLabel("hi");
         scroll = new JScrollPane(table);
         add(scroll, BorderLayout.CENTER);
-        add(save, BorderLayout.SOUTH);
+        add(bottomPanel, BorderLayout.SOUTH);
         
     }
 
@@ -50,6 +58,22 @@ public class CalendarView extends JPanel {
 
     public void setSave(JButton save) {
         this.save = save;
+    }
+
+    public JButton getDelete() {
+        return delete;
+    }
+
+    public void setDelete(JButton delete) {
+        this.delete = delete;
+    }
+
+    public JPanel getBottomPanel() {
+        return bottomPanel;
+    }
+
+    public void setBottomPanel(JPanel bottomPanel) {
+        this.bottomPanel = bottomPanel;
     }
 
     

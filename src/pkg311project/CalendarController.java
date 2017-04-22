@@ -48,6 +48,9 @@ public class CalendarController {
         calendar_frame.getPanel().getCalendar_menuPanel().getCalendar().addActionListener(new CalendarButtonListener());
         calendar_frame.getPanel().getCalendar_menuPanel().getMain().addActionListener(new SwitchToMainCalendarButtonListener());
         calendar_frame.getPanel().getCalendar_view().getSave().addActionListener(new AppointmentSaveButtonListener());
+        
+        calendar_frame.getPanel().getCalendar_view().getDelete().addActionListener(new AppointmentDeleteButtonListener());
+        
 
         calendar.getBtnPrev().addActionListener(new btnPrev_Action());
         calendar.getBtnNext().addActionListener(new btnNext_Action());
@@ -83,7 +86,10 @@ public class CalendarController {
                 fout = new FileWriter("src/pkg311project/appointment.txt", true);
                 fout.write(calendar_appoint_view.getAppoint_name().getText() + "\n");
                 fout.write(calendar_appoint_view.getAppoint_startTime().getText() + "\n");
+                fout.write(calendar_appoint_view.getAm_pm_startCombo().getSelectedItem().toString() + "\n");
                 fout.write(calendar_appoint_view.getAppoint_endTime().getText() + "\n");
+                
+                fout.write(calendar_appoint_view.getAm_pm_endCombo().getSelectedItem().toString() + "\n");
 
                 fout.close();
                 fout.flush();
@@ -122,13 +128,46 @@ public class CalendarController {
 
             tableToFile(-1);
             updateArrayAndTable();
+            JOptionPane.showMessageDialog(null, "Saved!");
+
+        }
+    }
+    
+    
+        class AppointmentDeleteButtonListener implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+
+            calendar_frame.switchToCalendarView(calendar_frame.getPanel().getCalendar_view());
+
+        
+            
+            
+            
+            
+            
+                int resp = JOptionPane.showConfirmDialog(null, "Are You Sure You Want To Delete This Line?\nThis Will Also Save All Changes Done So Far.");
+            if (resp == JOptionPane.YES_OPTION) {
+                int tempRow = calendar_frame.getPanel().getCalendar_view().getTable().convertRowIndexToModel(calendar_frame.getPanel().getCalendar_view().getTable().getSelectedRow());
+                tableToFile(tempRow);
+                updateArrayAndTable();
+            }
+                JOptionPane.showMessageDialog(null, "Deleted!");
+            
+            
+            
+            
+            
 
         }
     }
 
+    
+
     public void updateArrayAndTable() {
 
-        String tempName, tempStart, tempEnd;
+        String tempName, tempStart, tempStartAmPm, tempEnd, tempEndAmPm;
         appointmentList.clear();
         calendar_frame.getPanel().getCalendar_view().getModel().setRowCount(0);
         try {
@@ -139,11 +178,13 @@ public class CalendarController {
 
                 tempName = scan.nextLine();
                 tempStart = scan.nextLine();
+                tempStartAmPm = scan.nextLine();
                 tempEnd = scan.nextLine();
+                tempEndAmPm = scan.nextLine();
 
-                appointmentList.add(new Appointment(tempName, tempStart, tempEnd));
+                appointmentList.add(new Appointment(tempName, tempStart, tempStartAmPm, tempEnd, tempEndAmPm));
 
-                calendar_frame.getPanel().getCalendar_view().getModel().addRow(new Object[]{tempName, tempStart, tempEnd});
+                calendar_frame.getPanel().getCalendar_view().getModel().addRow(new Object[]{tempName, tempStart, tempStartAmPm, tempEnd, tempEndAmPm});
 
             }
             fin.close();
