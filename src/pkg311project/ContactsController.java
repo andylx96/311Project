@@ -22,8 +22,9 @@ import javax.swing.JOptionPane;
 public class ContactsController {
     ContactsModel contacts_model;
     ContactsFrame contacts_frame;
+    String tempC;
     
-    ArrayList<Appointment> contactsList = new ArrayList();
+    ArrayList<Contacts> contactsList = new ArrayList();
     
     ContactsController(ContactsModel contacts_model, ContactsFrame contacts_frame){
         this.contacts_model = contacts_model;
@@ -37,8 +38,22 @@ public class ContactsController {
 
         @Override
         public void actionPerformed(ActionEvent e) {
+            FileWriter fout;
+            try {
+                fout = new FileWriter("src/pkg311project/contact.txt", true);
+                tempC = JOptionPane.showInputDialog(null, "Contact Name: ");
+                fout.write(tempC + ",");
+                tempC = JOptionPane.showInputDialog(null, "Phone Number: ");
+                fout.write(tempC + ",");
+                tempC = JOptionPane.showInputDialog(null, "Extra Info: ");
+                fout.write(tempC + ",");
 
-            JOptionPane.showMessageDialog(null, "Not Supported Yet");
+                fout.close();
+                fout.flush();
+            } catch (IOException ex) {
+            }
+
+            updateArrayAndTable();
         }
     }
     
@@ -57,7 +72,7 @@ public class ContactsController {
                 tempNum = scan.nextLine();
                 tempExtra = scan.nextLine();
 
-                contactsList.add(new Appointment(tempName, tempNum, tempExtra));
+                contactsList.add(new Contacts(tempName, tempNum, tempExtra));
 
                 contacts_frame.getPanel().getContact_view().getModel().addRow(new Object[]{tempName, tempNum, tempExtra});
 

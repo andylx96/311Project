@@ -43,8 +43,8 @@ public class ContactsView extends JPanel {
         table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         scroll = new JScrollPane(table);
         add(scroll, BorderLayout.CENTER);
-//        add(save, BorderLayout.SOUTH);
-        add(add, BorderLayout.SOUTH);
+        add(save, BorderLayout.SOUTH);
+        add(add, BorderLayout.NORTH);
     }
 
     public JButton getAdd() {
