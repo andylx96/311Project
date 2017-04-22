@@ -48,9 +48,8 @@ public class CalendarController {
         calendar_frame.getPanel().getCalendar_menuPanel().getCalendar().addActionListener(new CalendarButtonListener());
         calendar_frame.getPanel().getCalendar_menuPanel().getMain().addActionListener(new SwitchToMainCalendarButtonListener());
         calendar_frame.getPanel().getCalendar_view().getSave().addActionListener(new AppointmentSaveButtonListener());
-        
+
         calendar_frame.getPanel().getCalendar_view().getDelete().addActionListener(new AppointmentDeleteButtonListener());
-        
 
         calendar.getBtnPrev().addActionListener(new btnPrev_Action());
         calendar.getBtnNext().addActionListener(new btnNext_Action());
@@ -88,7 +87,7 @@ public class CalendarController {
                 fout.write(calendar_appoint_view.getAppoint_startTime().getText() + "\n");
                 fout.write(calendar_appoint_view.getAm_pm_startCombo().getSelectedItem().toString() + "\n");
                 fout.write(calendar_appoint_view.getAppoint_endTime().getText() + "\n");
-                
+
                 fout.write(calendar_appoint_view.getAm_pm_endCombo().getSelectedItem().toString() + "\n");
 
                 fout.close();
@@ -132,38 +131,24 @@ public class CalendarController {
 
         }
     }
-    
-    
-        class AppointmentDeleteButtonListener implements ActionListener {
+
+    class AppointmentDeleteButtonListener implements ActionListener {
 
         @Override
         public void actionPerformed(ActionEvent e) {
 
             calendar_frame.switchToCalendarView(calendar_frame.getPanel().getCalendar_view());
 
-        
-            
-            
-            
-            
-            
-                int resp = JOptionPane.showConfirmDialog(null, "Are You Sure You Want To Delete This Line?\nThis Will Also Save All Changes Done So Far.");
+            int resp = JOptionPane.showConfirmDialog(null, "Are You Sure You Want To Delete This Line?\nThis Will Also Save All Changes Done So Far.");
             if (resp == JOptionPane.YES_OPTION) {
                 int tempRow = calendar_frame.getPanel().getCalendar_view().getTable().convertRowIndexToModel(calendar_frame.getPanel().getCalendar_view().getTable().getSelectedRow());
                 tableToFile(tempRow);
                 updateArrayAndTable();
             }
-                JOptionPane.showMessageDialog(null, "Deleted!");
-            
-            
-            
-            
-            
+            JOptionPane.showMessageDialog(null, "Deleted!");
 
         }
     }
-
-    
 
     public void updateArrayAndTable() {
 
@@ -316,9 +301,9 @@ public class CalendarController {
         public void actionPerformed(ActionEvent e) {
             if (calendar.cmbYear.getSelectedItem() != null) {
                 String b = calendar.cmbYear.getSelectedItem().toString();
+
                 calendar.cYear = Integer.parseInt(b);
                 refreshCalendar(calendar.cMonth, calendar.cYear);
-                
             }
         }
     }

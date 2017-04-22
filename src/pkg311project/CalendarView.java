@@ -19,7 +19,7 @@ import javax.swing.table.TableRowSorter;
 
 public class CalendarView extends JPanel {
 
-    Object[][] data = {{"Task", "DateStart","AM", "DateEnd","PM"}, {"Task", "DateStart","AM", "DateEnd","PM"}};
+    Object[][] data = {{"Task", "DateStart", "AM", "DateEnd", "PM"}, {"Task", "DateStart", "AM", "DateEnd", "PM"}};
     String[] columnName = {"Name", "Start", "AM/PM", "End", "AM/PM"};
     DefaultTableModel model = new DefaultTableModel(data, columnName);
     JTable table = new JTable(model);
@@ -27,29 +27,28 @@ public class CalendarView extends JPanel {
             = new TableRowSorter<>(table.getModel());
     JScrollPane scroll;
 
-  JButton save, delete;
-  JLabel hi;
-  
-  JPanel bottomPanel;
+    JButton save, delete;
+    JLabel hi;
 
-    
+    JPanel bottomPanel;
+
     public CalendarView() {
         setLayout(new BorderLayout());
 
         table.setRowSorter(rowSorter);
         table.setRowSelectionAllowed(true);
-        table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION); 
+        table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         bottomPanel = new JPanel();
-        
-    save = new JButton("Save Edits");
-    delete = new JButton("Delete Button");
+
+        save = new JButton("Save Edits");
+        delete = new JButton("Delete Button");
         bottomPanel.add(save);
         bottomPanel.add(delete);
         hi = new JLabel("hi");
         scroll = new JScrollPane(table);
         add(scroll, BorderLayout.CENTER);
         add(bottomPanel, BorderLayout.SOUTH);
-        
+
     }
 
     public JButton getSave() {
@@ -76,7 +75,6 @@ public class CalendarView extends JPanel {
         this.bottomPanel = bottomPanel;
     }
 
-    
     public JTable getTable() {
         return table;
     }
@@ -84,7 +82,6 @@ public class CalendarView extends JPanel {
     public void setTable(JTable table) {
         this.table = table;
     }
-
 
     public DefaultTableModel getModel() {
         return model;
