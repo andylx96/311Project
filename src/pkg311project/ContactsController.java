@@ -42,11 +42,11 @@ public class ContactsController {
             try {
                 fout = new FileWriter("src/pkg311project/contact.txt", true);
                 tempC = JOptionPane.showInputDialog(null, "Contact Name: ");
-                fout.write(tempC + ",");
+                fout.write("\n" + tempC + ",");
                 tempC = JOptionPane.showInputDialog(null, "Phone Number: ");
                 fout.write(tempC + ",");
                 tempC = JOptionPane.showInputDialog(null, "Extra Info: ");
-                fout.write(tempC + ",");
+                fout.write(tempC);
 
                 fout.close();
                 fout.flush();
@@ -59,22 +59,21 @@ public class ContactsController {
     
     public void updateArrayAndTable() {
 
-        String tempName, tempNum, tempExtra;
+        String tempName;
         contactsList.clear();
         contacts_frame.getPanel().getContact_view().getModel().setRowCount(0);
         try {
             FileReader fin;
             fin = new FileReader("src/pkg311project/contact.txt");
             Scanner scan = new Scanner(fin);
-            while (scan.hasNextLine()) {
+            while (scan.hasNext()) {
+                
+                tempName = scan.next();
+                String[] InArray = tempName.split(",");
 
-                tempName = scan.nextLine();
-                tempNum = scan.nextLine();
-                tempExtra = scan.nextLine();
+                contactsList.add(new Contacts(InArray[0], InArray[1], InArray[2]));
 
-                contactsList.add(new Contacts(tempName, tempNum, tempExtra));
-
-                contacts_frame.getPanel().getContact_view().getModel().addRow(new Object[]{tempName, tempNum, tempExtra});
+                contacts_frame.getPanel().getContact_view().getModel().addRow(new Object[]{InArray[0], InArray[1], InArray[2]});
 
             }
             fin.close();
