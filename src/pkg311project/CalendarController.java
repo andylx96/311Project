@@ -230,16 +230,16 @@ public class CalendarController {
         int nod, som; //Number Of Days, Start Of Month
 
         //Allow/disallow buttons
-        calendar.btnPrev.setEnabled(true);
-        calendar.btnNext.setEnabled(true);
+        calendar.btnprev.setEnabled(true);
+        calendar.btnnext.setEnabled(true);
         if (month == 0 && year <= calendar.realYear - 10) {
-            calendar.btnPrev.setEnabled(false);
+            calendar.btnprev.setEnabled(false);
         } //Too early
         if (month == 11 && year >= calendar.realYear + 100) {
-            calendar.btnNext.setEnabled(false);
+            calendar.btnnext.setEnabled(false);
         } //Too late
-        calendar.lblMonth.setText(months[month]); //Refresh the month label (at the top)
-        calendar.lblMonth.setBounds(160 - calendar.lblMonth.getPreferredSize().width / 2, 25, 180, 25); //Re-align label with calendar
+        calendar.Month.setText(months[month]); //Refresh the month label (at the top)
+        calendar.Month.setBounds(160 - calendar.Month.getPreferredSize().width / 2, 25, 180, 25); //Re-align label with calendar
         calendar.cmbYear.setSelectedItem(String.valueOf(year)); //Select the correct year in the combo box
 
         //Clear table
@@ -271,12 +271,11 @@ public class CalendarController {
         public Component getTableCellRendererComponent(JTable table, Object value, boolean selected, boolean focused, int row, int column) {
             super.getTableCellRendererComponent(table, value, selected, focused, row, column);
             if (column == 0 || column == 6) { //Week-end
-                setBackground(new Color(255, 220, 220));
-            } else { //Week
                 setBackground(new Color(255, 255, 255));
             }
+
             if (value != null) {
-                if (Integer.parseInt(value.toString()) == calendar.realDay && calendar.currentMonth == calendar.realMonth && calendar.currentYear == calendar.realYear) { //Today
+                if (Integer.parseInt(value.toString()) == calendar.realDay && calendar.cMonth == calendar.realMonth && calendar.cYear == calendar.realYear) { //Today
                     setBackground(new Color(220, 220, 255));
                 }
             }
@@ -289,26 +288,26 @@ public class CalendarController {
     class btnPrev_Action implements ActionListener {
 
         public void actionPerformed(ActionEvent e) {
-            if (calendar.currentMonth == 0) { //Back one year
-                calendar.currentMonth = 11;
-                calendar.currentYear -= 1;
+            if (calendar.cMonth == 0) { //Back one year
+                calendar.cMonth = 11;
+                calendar.cYear -= 1;
             } else { //Back one month
-                calendar.currentMonth -= 1;
+                calendar.cMonth -= 1;
             }
-            refreshCalendar(calendar.currentMonth, calendar.currentYear);
+            refreshCalendar(calendar.cMonth, calendar.cYear);
         }
     }
 
     class btnNext_Action implements ActionListener {
 
         public void actionPerformed(ActionEvent e) {
-            if (calendar.currentMonth == 11) { //Foward one year
-                calendar.currentMonth = 0;
-                calendar.currentYear += 1;
+            if (calendar.cMonth == 11) { //Foward one year
+                calendar.cMonth = 0;
+                calendar.cYear += 1;
             } else { //Foward one month
-                calendar.currentMonth += 1;
+                calendar.cMonth += 1;
             }
-            refreshCalendar(calendar.currentMonth, calendar.currentYear);
+            refreshCalendar(calendar.cMonth, calendar.cYear);
         }
     }
 
@@ -317,8 +316,8 @@ public class CalendarController {
         public void actionPerformed(ActionEvent e) {
             if (calendar.cmbYear.getSelectedItem() != null) {
                 String b = calendar.cmbYear.getSelectedItem().toString();
-                calendar.currentYear = Integer.parseInt(b);
-                refreshCalendar(calendar.currentMonth, calendar.currentYear);
+                calendar.cYear = Integer.parseInt(b);
+                refreshCalendar(calendar.cMonth, calendar.cYear);
                 
             }
         }
