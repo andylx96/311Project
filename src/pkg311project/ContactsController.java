@@ -57,7 +57,7 @@ public class ContactsController {
         public void actionPerformed(ActionEvent e) {
             FileWriter fout;
             try {
-                fout = new FileWriter("src/pkg311project/contact.txt", true);
+                fout = new FileWriter("src/pkg311project/contact.csv", true);
                 tempC = JOptionPane.showInputDialog(null, "Contact Name: ");
                 fout.write("\n" + tempC + ",");
                 tempC = JOptionPane.showInputDialog(null, "Phone Number: ");
@@ -81,7 +81,7 @@ public class ContactsController {
         contacts_frame.getPanel().getContact_view().getModel().setRowCount(0);
         try {
             FileReader fin;
-            fin = new FileReader("src/pkg311project/contact.txt");
+            fin = new FileReader("src/pkg311project/contact.csv");
             Scanner scan = new Scanner(fin);
             while (scan.hasNext()) {
                 
@@ -106,7 +106,7 @@ public class ContactsController {
      public void tableToFile(int tempRow) {
         FileWriter fout;
         try {
-            fout = new FileWriter("src/pkg311project/contact.txt");
+            fout = new FileWriter("src/pkg311project/contact.csv");
             for (int i = 0; i < contacts_frame.getPanel().getContact_view().getTable().getRowCount(); i++) {
                 for (int j = 0; j < contacts_frame.getPanel().getContact_view().getTable().getColumnCount(); j++) {
 
