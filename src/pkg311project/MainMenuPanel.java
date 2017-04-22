@@ -83,5 +83,11 @@ public class MainMenuPanel extends JPanel {
     public void setLog_view(LoginView log_view) {
         this.log_view = log_view;
     }
-
+    
+    public SignUpView getSign_view(){
+        return signUp_view;
+    }
+    public void setSign_view(SignUpView signUp_view){
+        this.signUp_view = signUp_view;
+    }
 }
