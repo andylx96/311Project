@@ -28,8 +28,8 @@ public class CalendarAppointView extends JPanel {
         createAppoint = new JButton("Create Appointment");
 
         status = new JLabel();
- 
-gbc.fill = GridBagConstraints.HORIZONTAL;
+
+        gbc.fill = GridBagConstraints.HORIZONTAL;
         gbc.gridx = 0;
         gbc.gridy = 0;
         add(appoint_name, gbc);

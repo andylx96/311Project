@@ -22,6 +22,7 @@ public class MainMenuPanel extends JPanel {
     ContactsView contacts_view;
     MainMenuView main_view;
     LoginView log_view;
+    SignUpView signUp_view;
 
     public MainMenuPanel() {
         setLayout(new BorderLayout());
@@ -42,6 +43,25 @@ public class MainMenuPanel extends JPanel {
         revalidate();
         repaint();
     }
+    
+    
+    
+    
+     public void addSignUpView(SignUpView signUp_view) {
+        this.signUp_view = signUp_view;
+        add(signUp_view, BorderLayout.CENTER);
+        revalidate();
+        repaint();
+    }
+
+    public void removeSignUpView() {
+        if (this.signUp_view != null) {
+            remove(this.signUp_view);
+        }
+    }
+    
+    
+    
 
     public void removeMainMenu() {
         if (this.main_view != null) {

@@ -8,7 +8,6 @@ package pkg311project;
 import java.awt.Color;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.awt.GridLayout;
 import java.awt.Insets;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -22,29 +21,26 @@ import javax.swing.border.Border;
  *
  * @author zabuz
  */
-public class LoginView extends JPanel {
+public class SignUpView extends JPanel {
 
-    JLabel loginStatus, hint;
     JTextArea username, password;
-    JButton loginButton, signUpButton;
-    JComboBox<String> usernameCombo;
+    JButton signUpButton;
 
     GridBagConstraints gbc = new GridBagConstraints();
 
-    public LoginView() {
+    SignUpView() {
 
         setLayout(new GridBagLayout());
-        loginStatus = new JLabel("Please Login.");
-        loginButton = new JButton("Login");
         username = new JTextArea("Username");
         password = new JTextArea("Password");
-        hint = new JLabel("The Default Username and Password is, Username/Password");
-        usernameCombo = new JComboBox();
         signUpButton = new JButton("Sign Up");
 
         setBackground(Color.WHITE);
 
         Border border = BorderFactory.createLineBorder(Color.BLACK);
+        
+        username.setBorder(BorderFactory.createCompoundBorder(border,
+                BorderFactory.createEmptyBorder(10, 10, 10, 10)));
         password.setBorder(BorderFactory.createCompoundBorder(border,
                 BorderFactory.createEmptyBorder(10, 10, 10, 10)));
 
@@ -52,15 +48,10 @@ public class LoginView extends JPanel {
 
         gbc.fill = GridBagConstraints.HORIZONTAL;
 
-        gbc.gridx = 0;
-        gbc.gridy = 0;
-        add(loginStatus, gbc);
-        gbc.gridx = 0;
-        gbc.gridy = 1;
-        add(hint, gbc);
+       
         gbc.gridx = 0;
         gbc.gridy = 2;
-        add(usernameCombo, gbc);
+        add(username, gbc);
         gbc.gridx = 0;
         gbc.gridy = 3;
         add(password, gbc);
@@ -68,27 +59,10 @@ public class LoginView extends JPanel {
         gbc.gridx = 0;
         gbc.gridy = 4;
         gbc.ipady = 10;
-        add(loginButton, gbc);
-
-        gbc.gridy = 5;
         add(signUpButton, gbc);
+
     }
 
-    public JLabel getLoginStatus() {
-        return loginStatus;
-    }
-
-    public void setLoginStatus(JLabel loginStatus) {
-        this.loginStatus = loginStatus;
-    }
-
-    public JButton getLoginButton() {
-        return loginButton;
-    }
-
-    public void setLoginButton(JButton loginButton) {
-        this.loginButton = loginButton;
-    }
 
     public JTextArea getUsername() {
         return username;
@@ -106,22 +80,6 @@ public class LoginView extends JPanel {
         this.password = password;
     }
 
-    public JLabel getHint() {
-        return hint;
-    }
-
-    public void setHint(JLabel hint) {
-        this.hint = hint;
-    }
-
-    public JComboBox getUsernameCombo() {
-        return usernameCombo;
-    }
-
-    public void setUsernameCombo(JComboBox usernameCombo) {
-        this.usernameCombo = usernameCombo;
-    }
-
     public JButton getSignUpButton() {
         return signUpButton;
     }
@@ -130,4 +88,14 @@ public class LoginView extends JPanel {
         this.signUpButton = signUpButton;
     }
 
+    public GridBagConstraints getGbc() {
+        return gbc;
+    }
+
+    public void setGbc(GridBagConstraints gbc) {
+        this.gbc = gbc;
+    }
+    
+    
 }
+

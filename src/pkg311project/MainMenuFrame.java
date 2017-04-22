@@ -41,9 +41,24 @@ public class MainMenuFrame extends JFrame {
 //        nVpanel.menu.loginButton.addActionListener(al);
 //    }
     public void switchToMainView(MainMenuView main_view) {
-   main_panel.removeLogin();
-   main_panel.removeMainMenu();
-   main_panel.addMainMenu(main_view);
+        main_panel.removeLogin();
+        main_panel.removeMainMenu();
+        main_panel.removeSignUpView();
+        main_panel.addMainMenu(main_view);
+    }
+
+    public void switchToSignUpView(SignUpView signUp_view) {
+        main_panel.removeLogin();
+        main_panel.removeMainMenu();
+        main_panel.removeSignUpView();
+        main_panel.addSignUpView(signUp_view);
+    }
+
+    public void switchToLoginView(LoginView login_view) {
+        main_panel.removeLogin();
+        main_panel.removeMainMenu();
+        main_panel.removeSignUpView();
+        main_panel.addLogin(login_view);
     }
 
     public MainMenuModel getModel() {
@@ -62,5 +77,4 @@ public class MainMenuFrame extends JFrame {
         this.main_panel = main_panel;
     }
 
-   
 }
