@@ -1,6 +1,18 @@
-Enter Appointment Name
-dd/mm/yyyy
-Start Time
+Timmys Birthday Party
+05/05/2018
+11:00
 AM
-End Time
+3:00
+PM
+Hongjies Birthday Party
+05/05/2018
+3:00
+PM
+8:00
+PM
+InterView
+05/20/2018
+11:45
 AM
+12
+PM
