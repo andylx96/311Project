@@ -34,7 +34,7 @@ public class CalendarController {
     CalendarAppointView calendar_appoint_view;
     CalendarOverView calendar;
 
-    ArrayList<Appointment> appointmentList = new ArrayList();
+    ArrayList<Appointment> appointmentList = new ArrayList<Appointment>();
 
     CalendarController(CalendarModel calendar_model, CalendarFrame calendar_frame) {
 
@@ -262,11 +262,11 @@ public class CalendarController {
                 setBackground(new Color(255, 255, 255));
             }
 
-            if (value != null) {
-                if (Integer.parseInt(value.toString()) == calendar.realDay && calendar.cMonth == calendar.realMonth && calendar.cYear == calendar.realYear) { //Today
-                    setBackground(new Color(220, 220, 255));
-                }
-            }
+//            if (value != null) {
+//                if (Integer.parseInt(value.toString()) == calendar.realDay && calendar.cMonth == calendar.realMonth && calendar.cYear == calendar.realYear) { //Today
+//                    setBackground(new Color(150, 255, 150));
+//                }
+//            }
             setBorder(null);
             setForeground(Color.black);
             return this;
