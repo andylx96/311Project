@@ -358,6 +358,7 @@ public class CalendarController {
                     setBackground(new Color(150, 255, 150));
                 }
             }
+            loadAppointmentsToCal();
             setBorder(null);
             setForeground(Color.black);
             return this;
@@ -432,7 +433,8 @@ public class CalendarController {
                         if (appointmentList.get(i).getDateDay().equalsIgnoreCase(
                                 calendar_frame.getPanel().getCalendar_view().getTable().getValueAt(k, j).toString())) {
                             System.out.println("triple dubs");
-                            calendar_frame.getPanel().getCalendar_view().getTable().setValueAt("Special Event",k, j);
+                            calendar_frame.getPanel().getCalendar_view().getTable().getModel().setValueAt("Special Event",k, j);
+//                            calendar_frame.getPanel().getCalendar_view().getTable().get
                             
                         }
 //                            fout.write(calendar_frame.getPanel().getCalendar_view().getTable().getValueAt(i, j) + "\n");

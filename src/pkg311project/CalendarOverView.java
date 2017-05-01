@@ -89,7 +89,7 @@ public class CalendarOverView extends JPanel {
         tblCalendar.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
         //uneditable
-        tblCalendar.setDefaultEditor(Object.class, null);
+//        tblCalendar.setDefaultEditor(Object.class, null);
 
         //Set row/column count
         tblCalendar.setRowHeight(58);
