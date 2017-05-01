@@ -28,7 +28,7 @@ public class ContactsController {
 
     ContactsModel contacts_model;
     ContactsFrame contacts_frame;
-    String tempC;
+    String tempC, tempA, tempB;
 
     ArrayList<Contacts> contactsList = new ArrayList();
     String currentUsersName;
@@ -167,15 +167,31 @@ public class ContactsController {
             FileWriter fout;
             try {
                 fout = new FileWriter(String.format("src/contacts/%s.csv", getCurrentUsersName()), true);
-                tempC = JOptionPane.showInputDialog(null, "Contact Name: ");
-                fout.write("\n" + tempC + ",");
-                tempC = JOptionPane.showInputDialog(null, "Phone Number: ");
-                fout.write(tempC + ",");
+                tempA = JOptionPane.showInputDialog(null, "Contact Name: ");
+                tempB = JOptionPane.showInputDialog(null, "Phone Number: ");
                 tempC = JOptionPane.showInputDialog(null, "Extra Info: ");
-                fout.write(tempC);
-
-                fout.close();
-                fout.flush();
+                if (tempA == null)
+                {
+                    JOptionPane.showMessageDialog(null, "There was an error. Try Again");
+                }
+                else
+                if (tempB == null)
+                {
+                    JOptionPane.showMessageDialog(null, "There was an error. Try Again");
+                }
+                else
+                if (tempC == null)
+                {
+                    JOptionPane.showMessageDialog(null, "There was an error. Try Again");
+                }
+                else
+                {
+                    fout.write("\n" + tempA + ",");
+                    fout.write(tempB + ",");
+                    fout.write(tempC);
+                    fout.close();
+                    fout.flush();
+                }
             } catch (IOException ex) {
             }
 
