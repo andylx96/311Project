@@ -94,8 +94,8 @@ public class MainMenuController {
         public void actionPerformed(ActionEvent e) {
             {
 
-                JOptionPane.showMessageDialog(null, "Not Supported Yet.");
-//                n_frame.switchToSignUpView(signUp_view);
+//                JOptionPane.showMessageDialog(null, "Not Supported Yet.");
+                n_frame.switchToSignUpView(signUp_view);
             }
         }
 
@@ -105,30 +105,34 @@ public class MainMenuController {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            {
-                JOptionPane.showMessageDialog(null, "Not Supported Yet.");
+            if (!signUp_view.getUsername().getText().equalsIgnoreCase("")) {
+                String tempUsername = signUp_view.getUsername().getText();
+                File f = new File(String.format("src/accounts/%s.txt", tempUsername));
+                if (f.exists() && !f.isDirectory()) {
+                    JOptionPane.showMessageDialog(null, "User already exist");
+                } else {
+                    if (n_model.getAccounts().get(0).contains("signUp_view.getUsername().getText()")) {
+                        JOptionPane.showMessageDialog(null, "Account Already Exist, Please Try Another Username");
+                    } else {
+
+                        try {
+                            FileWriter fw = new FileWriter(String.format("src/accounts/%s.txt", tempUsername));
+                            fw.write(signUp_view.getUsername().getText() + "\n");
+                            fw.write(signUp_view.getPassword().getText() + "\n");
+                            fw.flush();
+                            fw.close();
+                            JOptionPane.showMessageDialog(null, "Account Created!");
+                            n_frame.switchToLoginView(n_frame.getMain_panel().getLog_view());
+
+                        } catch (FileNotFoundException ex) {
+                        } catch (Throwable ex) {
+                        }
+
+                    }
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "Error, You cannot leave username Blank");
             }
-//                loadAccounts();
-//                if (n_model.getAccounts().get(0).contains("signUp_view.getUsername().getText()")) {
-//                    JOptionPane.showMessageDialog(null, "Account Already Exist, Please Try Another Username");
-//                } else {
-//
-//                    try {
-//                        FileWriter fw = new FileWriter("src/pkg311project/Login.txt", true);
-//                        fw.write(signUp_view.getUsername().getText() + "\n");
-//                        fw.write(signUp_view.getPassword().getText() + "\n");
-//                        fw.flush();
-//                        fw.close();
-//                        JOptionPane.showMessageDialog(null, "Account Created!");
-//                        n_frame.switchToLoginView(n_panel.getLog_view());
-//
-//                    } catch (FileNotFoundException ex) {
-//                    } catch (Throwable ex) {
-//                    }
-//
-//                }
-//
-//            }
         }
 
     }
@@ -148,9 +152,7 @@ public class MainMenuController {
                     while (scan.hasNextLine()) {
                         username = scan.nextLine();
                         password = scan.nextLine();
-
                     }
-
                     fin.close();
                 } catch (FileNotFoundException ex) {
                     JOptionPane.showMessageDialog(null, "Error Account Not Found");
@@ -158,8 +160,6 @@ public class MainMenuController {
                     JOptionPane.showMessageDialog(null, "Error Account Not Found");
                 }
 
-//                String username = n_frame.getMain_panel().getLog_view().getUsername().getText();
-//                String password = n_frame.getMain_panel().getLog_view().getPassword().getText();
                 if (n_frame.getMain_panel().getLog_view().getUsername().getText().equalsIgnoreCase(username) && n_frame.getMain_panel().getLog_view().getPassword().getText().equals(password)) {
 
                     n_frame.switchToMainView(main_view);

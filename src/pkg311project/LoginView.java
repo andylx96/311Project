@@ -45,6 +45,8 @@ public class LoginView extends JPanel {
         setBackground(Color.WHITE);
 
         Border border = BorderFactory.createLineBorder(Color.BLACK);
+        username.setBorder(BorderFactory.createCompoundBorder(border,
+                BorderFactory.createEmptyBorder(10, 10, 10, 10)));
         password.setBorder(BorderFactory.createCompoundBorder(border,
                 BorderFactory.createEmptyBorder(10, 10, 10, 10)));
 
