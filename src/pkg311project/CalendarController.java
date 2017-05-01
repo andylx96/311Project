@@ -14,7 +14,10 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.Scanner;
 import javax.swing.JOptionPane;
@@ -29,7 +32,7 @@ import javax.swing.table.DefaultTableCellRenderer;
  * @author ajl5735
  */
 public class CalendarController {
-    
+
     CalendarModel calendar_model;
     CalendarFrame calendar_frame;
     CalendarPanel calendar_panel;
@@ -37,11 +40,11 @@ public class CalendarController {
     CalendarAppointView calendar_appoint_view;
     CalendarOverView calendar;
     String currentUsersName;
-    
+
     ArrayList<Appointment> appointmentList = new ArrayList();
-    
+
     CalendarController(CalendarModel calendar_model, CalendarFrame calendar_frame, String username) {
-        
+
         this.calendar_model = calendar_model;
         this.calendar_frame = calendar_frame;
         calendar_appoint_view = new CalendarAppointView();
@@ -52,7 +55,7 @@ public class CalendarController {
         calendar_frame.getPanel().getCalendar_menuPanel().getCalendar().addActionListener(new CalendarButtonListener());
         calendar_frame.getPanel().getCalendar_menuPanel().getMain().addActionListener(new SwitchToMainCalendarButtonListener());
         calendar_frame.getPanel().getCalendar_view().getSave().addActionListener(new AppointmentSaveButtonListener());
-        
+
         calendar_frame.getPanel().getCalendar_view().getDelete().addActionListener(new AppointmentDeleteButtonListener());
         calendar_frame.getPanel().getCalendar_view().getFilter().getDocument().addDocumentListener(new SearchDocumentListener());
         calendar.getBtnPrev().addActionListener(new btnPrev_Action());
@@ -64,22 +67,22 @@ public class CalendarController {
         refreshCalendar(calendar.realMonth, calendar.realYear); //Refresh calendar
 
     }
-    
+
     class SwitchToAppointmentButtonListener implements ActionListener {
-        
+
         @Override
         public void actionPerformed(ActionEvent e) {
-            
+
             calendar_frame.switchToCalendarAppointView(calendar_appoint_view);
-            
+
         }
     }
-    
+
     class CalendarCreateButtonListener implements ActionListener {
-        
+
         @Override
         public void actionPerformed(ActionEvent e) {
-            
+
             calendar_appoint_view.getStatus().setText("Account Created!");
 //            appointmentList.add(new Appointment(calendar_appoint_view.getAppoint_name().toString(), calendar_appoint_view.getAppoint_startTime().toString(),
 //                    calendar_appoint_view.getAppoint_endTime().toString()));
@@ -88,63 +91,64 @@ public class CalendarController {
             try {
                 fout = new FileWriter(String.format("src/appointments/%s.txt", getCurrentUsersName()), true);
                 fout.write(calendar_appoint_view.getAppoint_name().getText() + "\n");
-                
+
                 fout.write(calendar_appoint_view.getDate().getText() + "\n");
                 fout.write(calendar_appoint_view.getAppoint_startTime().getText() + "\n");
                 fout.write(calendar_appoint_view.getAm_pm_startCombo().getSelectedItem().toString() + "\n");
                 fout.write(calendar_appoint_view.getAppoint_endTime().getText() + "\n");
-                
+
                 fout.write(calendar_appoint_view.getAm_pm_endCombo().getSelectedItem().toString() + "\n");
-                
+
                 fout.close();
                 fout.flush();
             } catch (IOException ex) {
             }
-            
+
             updateArrayAndTable();
         }
     }
-    
+
     class CalendarButtonListener implements ActionListener {
-        
+
         @Override
         public void actionPerformed(ActionEvent e) {
-            
+
             calendar_frame.switchToCalendar(calendar);
+//            displayTasks(appointmentList);
             //JOptionPane.showMessageDialog(null, "Not Supported Yet");
         }
     }
-    
+
     class SwitchToMainCalendarButtonListener implements ActionListener {
-        
+
         @Override
         public void actionPerformed(ActionEvent e) {
-            
+
             calendar_frame.switchToCalendarView(calendar_frame.getPanel().getCalendar_view());
         }
     }
-    
+
     class AppointmentSaveButtonListener implements ActionListener {
-        
+
         @Override
         public void actionPerformed(ActionEvent e) {
-            
+
             calendar_frame.switchToCalendarView(calendar_frame.getPanel().getCalendar_view());
-            
+
             tableToFile(-1);
             updateArrayAndTable();
             JOptionPane.showMessageDialog(null, "Saved!");
-            
+
         }
     }
-    
+
     class AppointmentDeleteButtonListener implements ActionListener {
-        
+
         @Override
         public void actionPerformed(ActionEvent e) {
-            
+
             calendar_frame.switchToCalendarView(calendar_frame.getPanel().getCalendar_view());
-            
+
             int resp = JOptionPane.showConfirmDialog(null, "Are You Sure You Want To Delete This Line?\nThis Will Also Save All Changes Done So Far.");
             if (resp == JOptionPane.YES_OPTION) {
                 int tempRow = calendar_frame.getPanel().getCalendar_view().getTable().convertRowIndexToModel(calendar_frame.getPanel().getCalendar_view().getTable().getSelectedRow());
@@ -152,44 +156,45 @@ public class CalendarController {
                 updateArrayAndTable();
             }
             JOptionPane.showMessageDialog(null, "Deleted!");
-            
+
         }
     }
-    
+
     public void updateArrayAndTable() {
-        
+
         String tempName, tempDate, tempStart, tempStartAmPm, tempEnd, tempEndAmPm;
+
         appointmentList.clear();
         calendar_frame.getPanel().getCalendar_view().getModel().setRowCount(0);
         try {
             FileReader fin;
-            
+
             fin = new FileReader(String.format("src/appointments/%s.txt", getCurrentUsersName()));
             Scanner scan = new Scanner(fin);
             while (scan.hasNextLine()) {
-                
+
                 tempName = scan.nextLine();
                 tempDate = scan.nextLine();
                 tempStart = scan.nextLine();
                 tempStartAmPm = scan.nextLine();
                 tempEnd = scan.nextLine();
                 tempEndAmPm = scan.nextLine();
-                
+
                 appointmentList.add(new Appointment(tempName, tempDate, tempStart, tempStartAmPm, tempEnd, tempEndAmPm));
-                
+
                 calendar_frame.getPanel().getCalendar_view().getModel().addRow(new Object[]{tempName, tempDate, tempStart, tempStartAmPm, tempEnd, tempEndAmPm});
-                
+
             }
             fin.close();
             calendar_frame.getPanel().getCalendar_view().getTable().setModel(calendar_frame.getPanel().getCalendar_view().getTable().getModel());
-            
+
         } catch (FileNotFoundException ex) {
-            
+
             JOptionPane.showMessageDialog(null, "No Appointments Were Found!");
         } catch (IOException ex) {
         }
     }
-    
+
     public void tableToFile(int tempRow) {
 
 //        if (calendar_frame.getPanel().getCalendar_view().getTable().getSelectedRow() != -1) {
@@ -199,9 +204,9 @@ public class CalendarController {
         try {
             fout = new FileWriter(String.format("src/appointments/%s.txt", getCurrentUsersName()));
             for (int i = 0; i < calendar_frame.getPanel().getCalendar_view().getTable().getRowCount(); i++) {
-                
+
                 for (int j = 0; j < calendar_frame.getPanel().getCalendar_view().getTable().getColumnCount(); j++) {
-                    
+
                     if (i != tempRow) {
                         fout.write(calendar_frame.getPanel().getCalendar_view().getTable().getValueAt(i, j) + "\n");
                     }
@@ -213,11 +218,11 @@ public class CalendarController {
             fout.flush();
         } catch (IOException ex) {
         }
-        
+
     }
-    
+
     class SearchDocumentListener implements DocumentListener {
-        
+
         @Override
         public void insertUpdate(DocumentEvent e
         ) {
@@ -228,7 +233,7 @@ public class CalendarController {
                 calendar_frame.getPanel().getCalendar_view().getRowSorter().setRowFilter(RowFilter.regexFilter("(?i)" + text));
             }
         }
-        
+
         @Override
         public void removeUpdate(DocumentEvent e
         ) {
@@ -239,7 +244,7 @@ public class CalendarController {
                 calendar_frame.getPanel().getCalendar_view().getRowSorter().setRowFilter(RowFilter.regexFilter("(?i)" + text));
             }
         }
-        
+
         @Override
         public void changedUpdate(DocumentEvent e) {
             JOptionPane.showMessageDialog(null, "Not supported yet.");
@@ -282,24 +287,73 @@ public class CalendarController {
             int row = new Integer((i + som - 2) / 7);
             int column = (i + som - 2) % 7;
             calendar.mtblCalendar.setValueAt(i, row, column);
+
         }
 
         //Apply renderers
         calendar.tblCalendar.setDefaultRenderer(calendar.tblCalendar.getColumnClass(0), new tblCalendarRenderer());
         calendar_frame.switchToCalendar(calendar);
     }
-    
+
+//    public void displayTasks(ArrayList<Appointment> ApptList) {
+//        ApptList.clear();
+//        ArrayList<Appointment> AptListNull = new ArrayList<Appointment>();
+//        ArrayList<Appointment> AptListDate = new ArrayList<Appointment>();
+//
+//        for (int i = 0; i < ApptList.size(); i++) {
+//            if (ApptList.get(i).getDate() == null) {
+//                AptListNull.add(ApptList.get(i));
+//            } else {
+//                int taskArrayYear = Integer.valueOf(ApptList.get(i).getDate().substring(0, 4));
+//                int taskArrayMonth = Integer.valueOf(ApptList.get(i).getDate().substring(5, 7));
+//                int taskArrayDay = Integer.valueOf(ApptList.get(i).getDate().substring(8, 10));
+//                if (AptListDate.size() == 0) {
+//                    AptListDate.add(ApptList.get(i));
+//                }
+//                for (int j = 0; j < AptListDate.size(); j++) {
+//                    int taskArrayDateYear = Integer.valueOf(AptListDate.get(j).getDate().substring(0, 4));
+//                    int taskArrayDateMonth = Integer.valueOf(AptListDate.get(j).getDate().substring(5, 7));
+//                    int taskArrayDateDay = Integer.valueOf(AptListDate.get(j).getDate().substring(8, 10));
+//                    if (taskArrayDateYear <= taskArrayYear) {
+//                        if (taskArrayDateYear < taskArrayYear) {
+//                            AptListDate.add(j, ApptList.get(i));
+//                            break;
+//                        } else {
+//                            if (taskArrayDateMonth <= taskArrayMonth) {
+//                                if (taskArrayDateYear < taskArrayYear) {
+//                                    AptListDate.add(j, ApptList.get(i));
+//                                    break;
+//                                } else {
+//                                    if (taskArrayDateDay <= taskArrayDay) {
+//                                        AptListDate.add(j, ApptList.get(i));
+//                                        break;
+//                                    }
+//                                }
+//                            }
+//                        }
+//                    }
+//                }
+//            }
+//        }
+//        for (int i = 0; i < AptListDate.size(); i++) {
+//            calendar.mtblCalendar.setValueAt((AptListDate.get(i)), 0, i);
+//        }
+//        for (int i = 0; i < AptListNull.size(); i++) {
+//            calendar.mtblCalendar.setValueAt((AptListNull.get(i)), 0, i);
+//        }
+//    }
+
     class tblCalendarRenderer extends DefaultTableCellRenderer {
-        
+
         public Component getTableCellRendererComponent(JTable table, Object value, boolean selected, boolean focused, int row, int column) {
             super.getTableCellRendererComponent(table, value, selected, focused, row, column);
             if (column == 0 || column == 6) { //Week-end
                 setBackground(new Color(255, 255, 255));
             }
-            
+
             if (value != null) {
                 if (Integer.parseInt(value.toString()) == calendar.realDay && calendar.cMonth == calendar.realMonth && calendar.cYear == calendar.realYear) { //Today
-                    setBackground(new Color(220, 220, 255));
+                    setBackground(new Color(150, 255, 150));
                 }
             }
             setBorder(null);
@@ -307,9 +361,9 @@ public class CalendarController {
             return this;
         }
     }
-    
+
     class btnPrev_Action implements ActionListener {
-        
+
         public void actionPerformed(ActionEvent e) {
             if (calendar.cMonth == 0) { //Back one year
                 calendar.cMonth = 11;
@@ -320,9 +374,9 @@ public class CalendarController {
             refreshCalendar(calendar.cMonth, calendar.cYear);
         }
     }
-    
+
     class btnNext_Action implements ActionListener {
-        
+
         public void actionPerformed(ActionEvent e) {
             if (calendar.cMonth == 11) { //Foward one year
                 calendar.cMonth = 0;
@@ -333,25 +387,25 @@ public class CalendarController {
             refreshCalendar(calendar.cMonth, calendar.cYear);
         }
     }
-    
+
     class cmbYear_Action implements ActionListener {
-        
+
         public void actionPerformed(ActionEvent e) {
             if (calendar.cmbYear.getSelectedItem() != null) {
                 String b = calendar.cmbYear.getSelectedItem().toString();
-                
+
                 calendar.cYear = Integer.parseInt(b);
                 refreshCalendar(calendar.cMonth, calendar.cYear);
             }
         }
     }
-    
+
     public String getCurrentUsersName() {
         return currentUsersName;
     }
-    
+
     public void setCurrentUsersName(String currentUsersName) {
         this.currentUsersName = currentUsersName;
     }
-    
+
 }
