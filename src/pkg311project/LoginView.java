@@ -39,7 +39,6 @@ public class LoginView extends JPanel {
         username = new JTextArea("Username");
         password = new JTextArea("Password");
         hint = new JLabel("The Default Username and Password is, Username/Password");
-//        usernameCombo = new JComboBox();
         signUpButton = new JButton("Sign Up");
 
         setBackground(Color.WHITE);
@@ -115,14 +114,6 @@ public class LoginView extends JPanel {
     public void setHint(JLabel hint) {
         this.hint = hint;
     }
-//
-//    public JComboBox getUsernameCombo() {
-//        return usernameCombo;
-//    }
-//
-//    public void setUsernameCombo(JComboBox usernameCombo) {
-//        this.usernameCombo = usernameCombo;
-//    }
 
     public JButton getSignUpButton() {
         return signUpButton;

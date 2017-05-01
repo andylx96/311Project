@@ -10,40 +10,45 @@ import javax.swing.JTextField;
 
 public class CalendarAppointView extends JPanel {
 
-    JLabel status, dateLabel;
+    JLabel status, dateLabel, appoint_label, startLabel, endLabel;
     JTextField appoint_name, appoint_startTime, appoint_endTime, date;
     JButton createAppoint;
     JComboBox<String> am_pm_startCombo, am_pm_endCombo;
     String[] am_pmArray = {"AM", "PM"};
     GridBagConstraints gbc = new GridBagConstraints();
-    
 
     public CalendarAppointView() {
         setLayout(new GridBagLayout());
 
-        appoint_name = new JTextField("Enter Appointment Name");
-        appoint_startTime = new JTextField("Start Time");
-        appoint_endTime = new JTextField("End Time");
-        am_pm_startCombo = new JComboBox(am_pmArray);
-        am_pm_endCombo = new JComboBox(am_pmArray);
+        appoint_name = new JTextField("");
+        appoint_label = new JLabel("Enter Appointment Name");
+        appoint_startTime = new JTextField("");
+        appoint_endTime = new JTextField("");
+        am_pm_startCombo = new JComboBox<String>(am_pmArray);
+        am_pm_endCombo = new JComboBox<String>(am_pmArray);
+        startLabel = new JLabel("Start Time");
+        endLabel = new JLabel("End Time");
         createAppoint = new JButton("Create Appointment");
         dateLabel = new JLabel("Date:(dd/mm/yyyy) Format");
-        date = new JTextField("dd/mm/yyyy");
+        date = new JTextField("");
         status = new JLabel();
-        
+
         gbc.ipady = 30;
 
         gbc.fill = GridBagConstraints.HORIZONTAL;
         gbc.gridx = 0;
         gbc.gridy = 0;
         gbc.gridwidth = 2;
+        add(appoint_label, gbc);
+
+        gbc.gridx = 1;
         add(appoint_name, gbc);
-        
+
         gbc.gridwidth = 1;
         gbc.gridx = 0;
         gbc.gridy = 1;
         add(dateLabel, gbc);
-        
+
         gbc.weightx = 1;
         gbc.gridx = 1;
         gbc.gridy = 1;
@@ -53,26 +58,28 @@ public class CalendarAppointView extends JPanel {
         gbc.gridx = 0;
         gbc.gridy = 2;
         gbc.weightx = 0;
-        add(appoint_startTime, gbc);
+        add(startLabel, gbc);
 
         gbc.gridx = 1;
-        gbc.gridy = 2;
+        add(appoint_startTime, gbc);
+
+        gbc.gridx = 2;
 
         add(am_pm_startCombo, gbc);
 
         gbc.gridx = 0;
         gbc.gridy = 3;
-
-        add(appoint_endTime, gbc);
+        add(endLabel, gbc);
 
         gbc.gridx = 1;
-        gbc.gridy = 3;
-
+        add(appoint_endTime, gbc);
+        
+        gbc.gridx = 2;
         add(am_pm_endCombo, gbc);
 
         gbc.gridx = 0;
         gbc.gridy = 4;
-gbc.gridwidth = 2;
+        gbc.gridwidth = 2;
         add(createAppoint, gbc);
 
         gbc.gridx = 0;
