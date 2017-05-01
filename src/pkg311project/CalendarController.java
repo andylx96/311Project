@@ -14,7 +14,10 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.Scanner;
 import javax.swing.JOptionPane;
@@ -33,6 +36,7 @@ public class CalendarController {
     MainMenuController mm_controller;
     CalendarAppointView calendar_appoint_view;
     CalendarOverView calendar;
+    Appointment appt;
 
     ArrayList<Appointment> appointmentList = new ArrayList<Appointment>();
 
@@ -76,7 +80,7 @@ public class CalendarController {
         @Override
         public void actionPerformed(ActionEvent e) {
 
-            calendar_appoint_view.getStatus().setText("Account Created!");
+            calendar_appoint_view.getStatus().setText("Appointment Created!");
 //            appointmentList.add(new Appointment(calendar_appoint_view.getAppoint_name().toString(), calendar_appoint_view.getAppoint_startTime().toString(),
 //                    calendar_appoint_view.getAppoint_endTime().toString()));
 
@@ -107,6 +111,7 @@ public class CalendarController {
         public void actionPerformed(ActionEvent e) {
 
             calendar_frame.switchToCalendar(calendar);
+            displayTasks(appointmentList);
             //JOptionPane.showMessageDialog(null, "Not Supported Yet");
         }
     }
@@ -155,6 +160,7 @@ public class CalendarController {
     public void updateArrayAndTable() {
 
         String tempName, tempDate, tempStart, tempStartAmPm, tempEnd, tempEndAmPm;
+        
         appointmentList.clear();
         calendar_frame.getPanel().getCalendar_view().getModel().setRowCount(0);
         try {
@@ -169,10 +175,15 @@ public class CalendarController {
                 tempStartAmPm = scan.nextLine();
                 tempEnd = scan.nextLine();
                 tempEndAmPm = scan.nextLine();
+                
+        
 
                 appointmentList.add(new Appointment(tempName, tempDate, tempStart, tempStartAmPm, tempEnd, tempEndAmPm));
 
                 calendar_frame.getPanel().getCalendar_view().getModel().addRow(new Object[]{tempName, tempDate, tempStart, tempStartAmPm, tempEnd, tempEndAmPm});
+                
+                
+               displayTasks(appointmentList);
 
             }
             fin.close();
@@ -247,12 +258,61 @@ public class CalendarController {
             int row = new Integer((i + som - 2) / 7);
             int column = (i + som - 2) % 7;
             calendar.mtblCalendar.setValueAt(i, row, column);
+            
+            
         }
 
         //Apply renderers
         calendar.tblCalendar.setDefaultRenderer(calendar.tblCalendar.getColumnClass(0), new tblCalendarRenderer());
         calendar_frame.switchToCalendar(calendar);
     }
+    public void displayTasks(ArrayList<Appointment> ApptList) {
+        ApptList.clear();
+        ArrayList<Appointment> AptListNull = new ArrayList<Appointment>();
+        ArrayList<Appointment> AptListDate = new ArrayList<Appointment>();
+
+        for (int i = 0; i < ApptList.size(); i++) {
+            if (ApptList.get(i).getDate() == null) {
+                AptListNull.add(ApptList.get(i));
+            } else {
+                int taskArrayYear = Integer.valueOf(ApptList.get(i).getDate().substring(0, 4));
+                int taskArrayMonth = Integer.valueOf(ApptList.get(i).getDate().substring(5, 7));
+                int taskArrayDay = Integer.valueOf(ApptList.get(i).getDate().substring(8, 10));
+                if (AptListDate.size() == 0) {
+                    AptListDate.add(ApptList.get(i));
+                }
+                for (int j = 0; j < AptListDate.size(); j++) {
+                    int taskArrayDateYear = Integer.valueOf(AptListDate.get(j).getDate().substring(0, 4));
+                    int taskArrayDateMonth = Integer.valueOf(AptListDate.get(j).getDate().substring(5, 7));
+                    int taskArrayDateDay = Integer.valueOf(AptListDate.get(j).getDate().substring(8, 10));
+                    if (taskArrayDateYear <= taskArrayYear) {
+                        if (taskArrayDateYear < taskArrayYear) {
+                            AptListDate.add(j, ApptList.get(i));
+                            break;
+                        } else {
+                            if (taskArrayDateMonth <= taskArrayMonth) {
+                                if (taskArrayDateYear < taskArrayYear) {
+                                    AptListDate.add(j, ApptList.get(i));
+                                    break;
+                                } else {
+                                    if (taskArrayDateDay <= taskArrayDay) {
+                                        AptListDate.add(j, ApptList.get(i));
+                                        break;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        for (int i = 0; i < AptListDate.size(); i++) {
+            calendar.mtblCalendar.setValueAt((AptListDate.get(i)), 0, i);
+        }
+        for (int i = 0; i < AptListNull.size(); i++) {
+            calendar.mtblCalendar.setValueAt((AptListNull.get(i)), 0, i);
+        }
+}
 
     class tblCalendarRenderer extends DefaultTableCellRenderer {
 
@@ -261,6 +321,7 @@ public class CalendarController {
             if (column == 0 || column == 6) { //Week-end
                 setBackground(new Color(255, 255, 255));
             }
+       
 
             if (value != null) {
                 if (Integer.parseInt(value.toString()) == calendar.realDay && calendar.cMonth == calendar.realMonth && calendar.cYear == calendar.realYear) { //Today
