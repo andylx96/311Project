@@ -8,16 +8,16 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-public class CalendarCreateAppointView extends JPanel {
+public class CalendarAppointView extends JPanel {
 
     JLabel status, dateLabel, appoint_label, startLabel, endLabel;
-    JTextField appoint_name, appoint_startTime, appoint_endTime, dateDay, dateMonth, dateYear;
+    JTextField appoint_name, appoint_startTime, appoint_endTime, date;
     JButton createAppoint;
     JComboBox<String> am_pm_startCombo, am_pm_endCombo;
     String[] am_pmArray = {"AM", "PM"};
     GridBagConstraints gbc = new GridBagConstraints();
 
-    public CalendarCreateAppointView() {
+    public CalendarAppointView() {
         setLayout(new GridBagLayout());
 
         appoint_name = new JTextField("");
@@ -26,13 +26,11 @@ public class CalendarCreateAppointView extends JPanel {
         appoint_endTime = new JTextField("");
         am_pm_startCombo = new JComboBox<String>(am_pmArray);
         am_pm_endCombo = new JComboBox<String>(am_pmArray);
-        createAppoint = new JButton("Create Appointment");
-        dateLabel = new JLabel("Date:(mm/dd/yyyy) Format");
         startLabel = new JLabel("Start Time");
         endLabel = new JLabel("End Time");
-        dateDay = new JTextField("");
-        dateMonth = new JTextField("");
-        dateYear = new JTextField("");
+        createAppoint = new JButton("Create Appointment");
+        dateLabel = new JLabel("Date:(dd/mm/yyyy) Format");
+        date = new JTextField("");
         status = new JLabel();
 
         gbc.ipady = 30;
@@ -41,7 +39,8 @@ public class CalendarCreateAppointView extends JPanel {
         gbc.gridx = 0;
         gbc.gridy = 0;
         gbc.gridwidth = 2;
-        add(appoint_label,gbc);
+        add(appoint_label, gbc);
+
         gbc.gridx = 1;
         add(appoint_name, gbc);
 
@@ -53,27 +52,28 @@ public class CalendarCreateAppointView extends JPanel {
         gbc.weightx = 1;
         gbc.gridx = 1;
         gbc.gridy = 1;
-        add(dateMonth, gbc);
-        gbc.gridx = 2;
-        add(dateDay, gbc);
-        gbc.gridx = 3;
-        add(dateYear, gbc);
+        add(date, gbc);
 
         gbc.gridwidth = 1;
         gbc.gridx = 0;
         gbc.gridy = 2;
         gbc.weightx = 0;
         add(startLabel, gbc);
+
         gbc.gridx = 1;
         add(appoint_startTime, gbc);
+
         gbc.gridx = 2;
+
         add(am_pm_startCombo, gbc);
 
         gbc.gridx = 0;
         gbc.gridy = 3;
         add(endLabel, gbc);
+
         gbc.gridx = 1;
         add(appoint_endTime, gbc);
+        
         gbc.gridx = 2;
         add(am_pm_endCombo, gbc);
 
@@ -159,28 +159,12 @@ public class CalendarCreateAppointView extends JPanel {
         this.dateLabel = dateLabel;
     }
 
-    public JTextField getDateDay() {
-        return dateDay;
+    public JTextField getDate() {
+        return date;
     }
 
-    public void setDateDay(JTextField dateDay) {
-        this.dateDay = dateDay;
-    }
-
-    public JTextField getDateMonth() {
-        return dateMonth;
-    }
-
-    public void setDateMonth(JTextField dateMonth) {
-        this.dateMonth = dateMonth;
-    }
-
-    public JTextField getDateYear() {
-        return dateYear;
-    }
-
-    public void setDateYear(JTextField dateYear) {
-        this.dateYear = dateYear;
+    public void setDate(JTextField date) {
+        this.date = date;
     }
 
 }

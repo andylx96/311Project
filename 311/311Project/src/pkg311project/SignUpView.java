@@ -66,6 +66,7 @@ public class SignUpView extends JPanel {
         gbc.gridy = 4;
         gbc.ipady = 10;
         add(signUpButton, gbc);
+
     }
 
 
