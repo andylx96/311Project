@@ -14,6 +14,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 import javax.swing.JOptionPane;
+import javax.swing.RowFilter;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 
 /**
  *
@@ -25,14 +28,17 @@ public class ContactsController {
     String tempC;
     
     ArrayList<Contacts> contactsList = new ArrayList();
+    String currentUsersName;
     
-    ContactsController(ContactsModel contacts_model, ContactsFrame contacts_frame){
+    ContactsController(ContactsModel contacts_model, ContactsFrame contacts_frame, String username){
         this.contacts_model = contacts_model;
         this.contacts_frame = contacts_frame;
-        
+        setCurrentUsersName(username);
         contacts_frame.getPanel().getContact_view().getAdd().addActionListener(new ContactsController.AddButtonListener());
         contacts_frame.getPanel().getContact_view().getDelete().addActionListener(new ContactsController.ContactDeleteButtonListener());
         updateArrayAndTable();
+        contacts_frame.getPanel().getContact_view().getFilter().getDocument().addDocumentListener(new SearchDocumentListener());
+        
     }
     
     class ContactDeleteButtonListener implements ActionListener {
@@ -57,7 +63,7 @@ public class ContactsController {
         public void actionPerformed(ActionEvent e) {
             FileWriter fout;
             try {
-                fout = new FileWriter("src/pkg311project/contact.csv", true);
+                fout = new FileWriter(String.format("src/contacts/%s.csv",getCurrentUsersName()), true);
                 tempC = JOptionPane.showInputDialog(null, "Contact Name: ");
                 fout.write("\n" + tempC + ",");
                 tempC = JOptionPane.showInputDialog(null, "Phone Number: ");
@@ -81,7 +87,7 @@ public class ContactsController {
         contacts_frame.getPanel().getContact_view().getModel().setRowCount(0);
         try {
             FileReader fin;
-            fin = new FileReader("src/pkg311project/contact.csv");
+            fin = new FileReader(String.format("src/contacts/%s.csv",getCurrentUsersName()));
             Scanner scan = new Scanner(fin);
             while (scan.hasNext()) {
                 
@@ -106,7 +112,7 @@ public class ContactsController {
      public void tableToFile(int tempRow) {
         FileWriter fout;
         try {
-            fout = new FileWriter("src/pkg311project/contact.csv");
+            fout = new FileWriter(String.format("src/contacts/%s.csv",getCurrentUsersName()));
             for (int i = 0; i < contacts_frame.getPanel().getContact_view().getTable().getRowCount(); i++) {
                 for (int j = 0; j < contacts_frame.getPanel().getContact_view().getTable().getColumnCount(); j++) {
 
@@ -126,5 +132,43 @@ public class ContactsController {
         } catch (IOException ex) {
         }
 
+    }
+     
+         class SearchDocumentListener implements DocumentListener {
+        
+        @Override
+        public void insertUpdate(DocumentEvent e
+        ) {
+            String text = contacts_frame.getPanel().getContact_view().getFilter().getText();
+            if (text.trim().length() == 0) {
+                contacts_frame.getPanel().getContact_view().getRowSorter().setRowFilter(null);
+            } else {
+                contacts_frame.getPanel().getContact_view().getRowSorter().setRowFilter(RowFilter.regexFilter("(?i)" + text));
+            }
+        }
+        
+        @Override
+        public void removeUpdate(DocumentEvent e
+        ) {
+            String text = contacts_frame.getPanel().getContact_view().getFilter().getText();
+            if (text.trim().length() == 0) {
+                contacts_frame.getPanel().getContact_view().getRowSorter().setRowFilter(null);
+            } else {
+                contacts_frame.getPanel().getContact_view().getRowSorter().setRowFilter(RowFilter.regexFilter("(?i)" + text));
+            }
+        }
+        
+        @Override
+        public void changedUpdate(DocumentEvent e) {
+            JOptionPane.showMessageDialog(null, "Not supported yet.");
+        }
+    }
+
+    public String getCurrentUsersName() {
+        return currentUsersName;
+    }
+
+    public void setCurrentUsersName(String currentUsersName) {
+        this.currentUsersName = currentUsersName;
     }
 }

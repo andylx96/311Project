@@ -6,12 +6,16 @@
 package pkg311project;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.GridLayout;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.JTextArea;
 import javax.swing.ListSelectionModel;
+import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
@@ -31,23 +35,32 @@ public class ContactsView extends JPanel {
         JScrollPane scroll;
 
         JLabel hi = new JLabel("hi");
-
+        JLabel filterLabel;
         JButton save = new JButton("Save Edits");
         JButton add = new JButton("Add Contacts");
         JButton delete = new JButton("Delete Button");
         JPanel bottomPanel;
+        JTextArea filter;
 
     public ContactsView() {
+        filterLabel = new JLabel("Search Filter: ", SwingConstants.RIGHT);
+        
         setLayout(new BorderLayout());
-
         table.setRowSorter(rowSorter);
         table.setRowSelectionAllowed(true);
         table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-        scroll = new JScrollPane(table);
+       scroll = new JScrollPane(table);
         bottomPanel = new JPanel();
+         bottomPanel.setLayout(new GridLayout(1,4));
+        
+        filter = new JTextArea();
+        filter.setOpaque(true);
+        filter.setBackground(Color.white);
         bottomPanel.add(save);
         bottomPanel.add(add);
         bottomPanel.add(delete);
+        bottomPanel.add(filterLabel);
+        bottomPanel.add(filter);
         add(scroll, BorderLayout.CENTER);
         add(bottomPanel, BorderLayout.SOUTH);
     }
@@ -58,6 +71,14 @@ public class ContactsView extends JPanel {
 
     public void setDelete(JButton delete) {
         this.delete = delete;
+    }
+
+    public TableRowSorter<TableModel> getRowSorter() {
+        return rowSorter;
+    }
+
+    public void setRowSorter(TableRowSorter<TableModel> rowSorter) {
+        this.rowSorter = rowSorter;
     }
 
     public JButton getAdd() {
@@ -78,6 +99,14 @@ public class ContactsView extends JPanel {
     
     public DefaultTableModel getModel() {
         return model;
+    }
+
+    public JTextArea getFilter() {
+        return filter;
+    }
+
+    public void setFilter(JTextArea filter) {
+        this.filter = filter;
     }
 
     public void setModel(DefaultTableModel model) {

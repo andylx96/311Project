@@ -27,7 +27,7 @@ public class LoginView extends JPanel {
     JLabel loginStatus, hint;
     JTextArea username, password;
     JButton loginButton, signUpButton;
-    JComboBox<String> usernameCombo;
+//    JComboBox<String> usernameCombo;
 
     GridBagConstraints gbc = new GridBagConstraints();
 
@@ -39,7 +39,7 @@ public class LoginView extends JPanel {
         username = new JTextArea("Username");
         password = new JTextArea("Password");
         hint = new JLabel("The Default Username and Password is, Username/Password");
-        usernameCombo = new JComboBox();
+//        usernameCombo = new JComboBox();
         signUpButton = new JButton("Sign Up");
 
         setBackground(Color.WHITE);
@@ -60,7 +60,7 @@ public class LoginView extends JPanel {
         add(hint, gbc);
         gbc.gridx = 0;
         gbc.gridy = 2;
-        add(usernameCombo, gbc);
+        add(username, gbc);
         gbc.gridx = 0;
         gbc.gridy = 3;
         add(password, gbc);
@@ -113,14 +113,14 @@ public class LoginView extends JPanel {
     public void setHint(JLabel hint) {
         this.hint = hint;
     }
-
-    public JComboBox getUsernameCombo() {
-        return usernameCombo;
-    }
-
-    public void setUsernameCombo(JComboBox usernameCombo) {
-        this.usernameCombo = usernameCombo;
-    }
+//
+//    public JComboBox getUsernameCombo() {
+//        return usernameCombo;
+//    }
+//
+//    public void setUsernameCombo(JComboBox usernameCombo) {
+//        this.usernameCombo = usernameCombo;
+//    }
 
     public JButton getSignUpButton() {
         return signUpButton;

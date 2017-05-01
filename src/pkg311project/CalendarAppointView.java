@@ -16,6 +16,7 @@ public class CalendarAppointView extends JPanel {
     JComboBox<String> am_pm_startCombo, am_pm_endCombo;
     String[] am_pmArray = {"AM", "PM"};
     GridBagConstraints gbc = new GridBagConstraints();
+    
 
     public CalendarAppointView() {
         setLayout(new GridBagLayout());

@@ -9,6 +9,7 @@ import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Locale;
 import java.util.Scanner;
 import javax.swing.JOptionPane;
 
@@ -34,8 +35,9 @@ public class MainMenuController {
         this.n_frame = n_frame;
         main_view = new MainMenuView();
         signUp_view = new SignUpView();
+//        String currentUsersName =  ;
 //        log_view = new LoginView();
-        loadAccounts();
+//        loadAccounts();
 
         main_view.getContactsButton().addActionListener(new ContactsButtonListener());
         n_frame.getMain_panel().getLog_view().getLoginButton().addActionListener(new LoginButtonListener());
@@ -55,7 +57,7 @@ public class MainMenuController {
 
                 contacts_model = new ContactsModel();
                 contacts_frame = new ContactsFrame(contacts_model);
-                contacts_controller = new ContactsController(contacts_model, contacts_frame);
+                contacts_controller = new ContactsController(contacts_model, contacts_frame, n_frame.getMain_panel().getLog_view().getUsername().getText().toLowerCase());
                 contacts_frame.setVisible(true);
 
             }
@@ -77,7 +79,7 @@ public class MainMenuController {
 
                 calendar_model = new CalendarModel();
                 calendar_frame = new CalendarFrame(calendar_model);
-                calendar_controller = new CalendarController(calendar_model, calendar_frame);
+                calendar_controller = new CalendarController(calendar_model, calendar_frame, n_frame.getMain_panel().getLog_view().getUsername().getText().toLowerCase());
 
                 calendar_frame.setVisible(true);
 
@@ -136,48 +138,66 @@ public class MainMenuController {
         @Override
         public void actionPerformed(ActionEvent e) {
             {
+                String inputUsername = n_frame.getMain_panel().getLog_view().getUsername().getText().toLowerCase();
+                String username = "";
+                String password = "";
 
-                String username = n_frame.getMain_panel().getLog_view().getUsernameCombo().getSelectedItem().toString();
-                String password = n_model.getAccounts().get(1).get(n_frame.getMain_panel().getLog_view().getUsernameCombo().getSelectedIndex()).toString();
-                if (n_frame.getMain_panel().getLog_view().getUsernameCombo().getSelectedItem().equals(username) && n_frame.getMain_panel().getLog_view().getPassword().getText().equals(password)) {
+                try {
+                    FileReader fin = new FileReader(String.format("src/accounts/%s.txt", inputUsername));
+                    Scanner scan = new Scanner(fin);
+                    while (scan.hasNextLine()) {
+                        username = scan.nextLine();
+                        password = scan.nextLine();
+
+                    }
+
+                    fin.close();
+                } catch (FileNotFoundException ex) {
+                    JOptionPane.showMessageDialog(null, "Error Account Not Found");
+                } catch (IOException ex) {
+                    JOptionPane.showMessageDialog(null, "Error Account Not Found");
+                }
+
+//                String username = n_frame.getMain_panel().getLog_view().getUsername().getText();
+//                String password = n_frame.getMain_panel().getLog_view().getPassword().getText();
+                if (n_frame.getMain_panel().getLog_view().getUsername().getText().equalsIgnoreCase(username) && n_frame.getMain_panel().getLog_view().getPassword().getText().equals(password)) {
 
                     n_frame.switchToMainView(main_view);
 
                 } else {
-                    n_frame.getMain_panel().getLog_view().getLoginStatus().setText("Error, Please Enter The Correct Information");
+                    n_frame.getMain_panel().getLog_view().getLoginStatus().setText("Error Incorrect Password or Username, Please Enter The Correct Information");
                 }
             }
         }
     }
 
-    public void loadAccounts() {
-
-        String tempUsername, tempPassword;
-
-        n_model.getAccounts().get(0).clear();
-        n_model.getAccounts().get(1).clear();
-        try {
-            FileReader fin = new FileReader("src/pkg311project/Login.txt");
-            Scanner scan = new Scanner(fin);
-            while (scan.hasNextLine()) {
-
-                tempUsername = scan.nextLine();
-                tempPassword = scan.nextLine();
-
-                n_model.getAccounts().get(0).add(tempUsername);
-                n_model.getAccounts().get(1).add(tempPassword);
-                n_frame.getMain_panel().getLog_view().getUsernameCombo().addItem(tempUsername);
-            }
-
-            fin.close();
-        } catch (FileNotFoundException ex) {
-            System.out.println("InfoNotFound");
-        } catch (IOException ex) {
-            System.out.println("InfoNotFound");
-        }
-
-    }
-
+//    public void loadAccounts() {
+//
+//        String tempUsername, tempPassword;
+//
+//        n_model.getAccounts().get(0).clear();
+//        n_model.getAccounts().get(1).clear();
+//        try {
+//            FileReader fin = new FileReader("src/pkg311project/Login.txt");
+//            Scanner scan = new Scanner(fin);
+//            while (scan.hasNextLine()) {
+//
+//                tempUsername = scan.nextLine();
+//                tempPassword = scan.nextLine();
+//
+//                n_model.getAccounts().get(0).add(tempUsername);
+//                n_model.getAccounts().get(1).add(tempPassword);
+//                n_frame.getMain_panel().getLog_view().getUsernameCombo().addItem(tempUsername);
+//            }
+//
+//            fin.close();
+//        } catch (FileNotFoundException ex) {
+//            System.out.println("InfoNotFound");
+//        } catch (IOException ex) {
+//            System.out.println("InfoNotFound");
+//        }
+//
+//    }
     public CalendarFrame getCalendar_frame() {
         return calendar_frame;
     }

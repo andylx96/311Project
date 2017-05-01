@@ -6,13 +6,16 @@
 package pkg311project;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.GridLayout;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.JTextArea;
 import javax.swing.ListSelectionModel;
+import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
@@ -28,27 +31,50 @@ public class CalendarView extends JPanel {
     JScrollPane scroll;
 
     JButton save, delete;
-    JLabel hi;
+    JLabel filterLabel;
+    JTextArea filter;
 
     JPanel bottomPanel;
 
     public CalendarView() {
         setLayout(new BorderLayout());
-
+        filterLabel = new JLabel("Search Filter: ", SwingConstants.RIGHT);
         table.setRowSorter(rowSorter);
         table.setRowSelectionAllowed(true);
         table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         bottomPanel = new JPanel();
-
+        filter = new JTextArea();
+        filter.setOpaque(true);
+//        filter.setVisible(true);
+        filter.setBackground(Color.WHITE);
         save = new JButton("Save Edits");
         delete = new JButton("Delete Button");
+        bottomPanel.setLayout(new GridLayout(1,4));
         bottomPanel.add(save);
         bottomPanel.add(delete);
-        hi = new JLabel("hi");
+        bottomPanel.add(filterLabel);
+        bottomPanel.add(filter);
+ 
         scroll = new JScrollPane(table);
         add(scroll, BorderLayout.CENTER);
         add(bottomPanel, BorderLayout.SOUTH);
+        
+    }
 
+    public TableRowSorter<TableModel> getRowSorter() {
+        return rowSorter;
+    }
+
+    public void setRowSorter(TableRowSorter<TableModel> rowSorter) {
+        this.rowSorter = rowSorter;
+    }
+
+    public JTextArea getFilter() {
+        return filter;
+    }
+
+    public void setFilter(JTextArea filter) {
+        this.filter = filter;
     }
 
     public JButton getSave() {
