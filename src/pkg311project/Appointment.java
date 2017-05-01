@@ -10,16 +10,43 @@ package pkg311project;
  * @author zabuz
  */
 public class Appointment {
-    String name, startTime, startAmPM, endTime, endAmPm, date;
-    
-    Appointment(String name, String startTime,String startAmPm, String endTime,String endAmPm, String date){
-    this.name = name;
-    this.startTime = startTime;
-    this.startAmPM = startAmPm;
-    this.endTime = endTime;
-    this.endAmPm = endAmPm;
-    this.date = date;
-    
+
+    String name, startTime, startAmPM, endTime, endAmPm, dateMonth, dateDay, dateYear;
+
+    Appointment(String name, String dateMonth, String dateDay, String dateYear, String startTime, String startAmPm, String endTime, String endAmPm) {
+        this.name = name;
+        this.dateMonth = dateMonth;
+        this.dateDay = dateDay;
+        this.dateYear = dateYear;
+        this.startTime = startTime;
+        this.startAmPM = startAmPm;
+        this.endTime = endTime;
+        this.endAmPm = endAmPm;
+
+    }
+
+    public String getDateMonth() {
+        return dateMonth;
+    }
+
+    public void setDateMonth(String dateMonth) {
+        this.dateMonth = dateMonth;
+    }
+
+    public String getDateDay() {
+        return dateDay;
+    }
+
+    public void setDateDay(String dateDay) {
+        this.dateDay = dateDay;
+    }
+
+    public String getDateYear() {
+        return dateYear;
+    }
+
+    public void setDateYear(String dateYear) {
+        this.dateYear = dateYear;
     }
 
     public String getName() {
@@ -61,5 +88,5 @@ public class Appointment {
     public void setEndAmPm(String endAmPm) {
         this.endAmPm = endAmPm;
     }
-    
+
 }

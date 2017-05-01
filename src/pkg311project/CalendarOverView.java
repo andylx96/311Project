@@ -103,6 +103,62 @@ public class CalendarOverView extends JPanel {
 
     }
 
+    public JLabel getMonth() {
+        return Month;
+    }
+
+    public void setMonth(JLabel Month) {
+        this.Month = Month;
+    }
+
+    public JLabel getYear() {
+        return Year;
+    }
+
+    public void setYear(JLabel Year) {
+        this.Year = Year;
+    }
+
+    public JButton getBtnprev() {
+        return btnprev;
+    }
+
+    public void setBtnprev(JButton btnprev) {
+        this.btnprev = btnprev;
+    }
+
+    public JButton getBtnnext() {
+        return btnnext;
+    }
+
+    public void setBtnnext(JButton btnnext) {
+        this.btnnext = btnnext;
+    }
+
+    public JPanel getTopMenu() {
+        return topMenu;
+    }
+
+    public void setTopMenu(JPanel topMenu) {
+        this.topMenu = topMenu;
+    }
+
+    public int getcYear() {
+        return cYear;
+    }
+
+    public void setcYear(int cYear) {
+        this.cYear = cYear;
+    }
+
+    public int getcMonth() {
+        return cMonth;
+    }
+
+    public void setcMonth(int cMonth) {
+        this.cMonth = cMonth;
+    }
+
     public JLabel getLblMonth() {
         return Month;
     }

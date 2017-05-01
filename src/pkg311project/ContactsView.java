@@ -39,9 +39,9 @@ public class ContactsView extends JPanel {
     JLabel hi = new JLabel("hi");
     JLabel filterLabel;
     JButton save = new JButton("Save Edits");
-    JButton add = new JButton("Add");
-    JButton delete = new JButton("Delete");
-    JButton export = new JButton("Export");
+    JButton add = new JButton("Add Contacts");
+    JButton delete = new JButton("Delete Button");
+    JButton export = new JButton("Excport");
     JPanel bottomPanel;
     JTextArea filter;
     JButton importButton = new JButton("Import");

@@ -37,7 +37,7 @@ public class CalendarController {
     CalendarFrame calendar_frame;
     CalendarPanel calendar_panel;
     MainMenuController mm_controller;
-    CalendarAppointView calendar_appoint_view;
+    CalendarCreateAppointView calendar_appoint_view;
     CalendarOverView calendar;
     String currentUsersName;
 
@@ -47,7 +47,7 @@ public class CalendarController {
 
         this.calendar_model = calendar_model;
         this.calendar_frame = calendar_frame;
-        calendar_appoint_view = new CalendarAppointView();
+        calendar_appoint_view = new CalendarCreateAppointView();
         calendar = new CalendarOverView();
         setCurrentUsersName(username);
         calendar_frame.getPanel().getCalendar_menuPanel().getAppointments().addActionListener(new SwitchToAppointmentButtonListener());
@@ -91,14 +91,13 @@ public class CalendarController {
             try {
                 fout = new FileWriter(String.format("src/appointments/%s.txt", getCurrentUsersName()), true);
                 fout.write(calendar_appoint_view.getAppoint_name().getText() + "\n");
-
-                fout.write(calendar_appoint_view.getDate().getText() + "\n");
+                fout.write(calendar_appoint_view.getDateMonth().getText() + "\n");
+                fout.write(calendar_appoint_view.getDateDay().getText() + "\n");
+                fout.write(calendar_appoint_view.getDateYear().getText() + "\n");
                 fout.write(calendar_appoint_view.getAppoint_startTime().getText() + "\n");
                 fout.write(calendar_appoint_view.getAm_pm_startCombo().getSelectedItem().toString() + "\n");
                 fout.write(calendar_appoint_view.getAppoint_endTime().getText() + "\n");
-
                 fout.write(calendar_appoint_view.getAm_pm_endCombo().getSelectedItem().toString() + "\n");
-
                 fout.close();
                 fout.flush();
             } catch (IOException ex) {
@@ -116,6 +115,7 @@ public class CalendarController {
             calendar_frame.switchToCalendar(calendar);
 //            displayTasks(appointmentList);
             //JOptionPane.showMessageDialog(null, "Not Supported Yet");
+            loadAppointmentsToCal();
         }
     }
 
@@ -162,7 +162,7 @@ public class CalendarController {
 
     public void updateArrayAndTable() {
 
-        String tempName, tempDate, tempStart, tempStartAmPm, tempEnd, tempEndAmPm;
+        String tempName, tempDateMonth, tempDateDay, tempDateYear, tempStart, tempStartAmPm, tempEnd, tempEndAmPm;
 
         appointmentList.clear();
         calendar_frame.getPanel().getCalendar_view().getModel().setRowCount(0);
@@ -174,15 +174,17 @@ public class CalendarController {
             while (scan.hasNextLine()) {
 
                 tempName = scan.nextLine();
-                tempDate = scan.nextLine();
+                tempDateMonth = scan.nextLine();
+                tempDateDay = scan.nextLine();
+                tempDateYear = scan.nextLine();
                 tempStart = scan.nextLine();
                 tempStartAmPm = scan.nextLine();
                 tempEnd = scan.nextLine();
                 tempEndAmPm = scan.nextLine();
 
-                appointmentList.add(new Appointment(tempName, tempDate, tempStart, tempStartAmPm, tempEnd, tempEndAmPm));
+                appointmentList.add(new Appointment(tempName, tempDateMonth, tempDateDay, tempDateYear, tempStart, tempStartAmPm, tempEnd, tempEndAmPm));
 
-                calendar_frame.getPanel().getCalendar_view().getModel().addRow(new Object[]{tempName, tempDate, tempStart, tempStartAmPm, tempEnd, tempEndAmPm});
+                calendar_frame.getPanel().getCalendar_view().getModel().addRow(new Object[]{tempName, tempDateMonth, tempDateDay, tempDateYear, tempStart, tempStartAmPm, tempEnd, tempEndAmPm});
 
             }
             fin.close();
@@ -292,6 +294,7 @@ public class CalendarController {
 
         //Apply renderers
         calendar.tblCalendar.setDefaultRenderer(calendar.tblCalendar.getColumnClass(0), new tblCalendarRenderer());
+        loadAppointmentsToCal();
         calendar_frame.switchToCalendar(calendar);
     }
 
@@ -342,7 +345,6 @@ public class CalendarController {
 //            calendar.mtblCalendar.setValueAt((AptListNull.get(i)), 0, i);
 //        }
 //    }
-
     class tblCalendarRenderer extends DefaultTableCellRenderer {
 
         public Component getTableCellRendererComponent(JTable table, Object value, boolean selected, boolean focused, int row, int column) {
@@ -408,4 +410,38 @@ public class CalendarController {
         this.currentUsersName = currentUsersName;
     }
 
+    public void loadAppointmentsToCal() {
+//                appointmentList.add(new Appointment(tempName, tempDateMonth, tempDateDay, tempDateYear, tempStart, tempStartAmPm, tempEnd, tempEndAmPm));
+//
+        for (int i = 0; i < appointmentList.size(); i++) {
+//            System.out.println(appointmentList.get(i));
+            if (calendar.getCmbYear().getSelectedItem().toString().equalsIgnoreCase(appointmentList.get(i).getDateYear())) {
+//                System.out.println(calendar.getCmbYear().getSelectedItem().toString());
+//                System.out.println(appointmentList.get(i).getDateYear());
+                System.out.println("dupe");
+                if (calendar.getMonth().getText().equalsIgnoreCase(appointmentList.get(i).getDateMonth())) {
+                    System.out.println("month due");
+                }
+
+//                if(){}
+//                appointmentList.get(i).getDateDay()
+                for (int k = 0; k < calendar_frame.getPanel().getCalendar_view().getTable().getRowCount(); k++) {
+
+                    for (int j = 0; j < calendar_frame.getPanel().getCalendar_view().getTable().getColumnCount(); j++) {
+
+                        if (appointmentList.get(i).getDateDay().equalsIgnoreCase(
+                                calendar_frame.getPanel().getCalendar_view().getTable().getValueAt(k, j).toString())) {
+                            System.out.println("triple dubs");
+                            calendar_frame.getPanel().getCalendar_view().getTable().setValueAt("Special Event",k, j);
+                            
+                        }
+//                            fout.write(calendar_frame.getPanel().getCalendar_view().getTable().getValueAt(i, j) + "\n");
+                    }
+                }
+
+            }
+
+        }
+
+    }
 }

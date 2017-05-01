@@ -25,17 +25,14 @@ public class SignUpView extends JPanel {
 
     JTextArea username, password;
     JButton signUpButton;
-    JLabel userLabel, passLabel;
 
     GridBagConstraints gbc = new GridBagConstraints();
 
     SignUpView() {
 
         setLayout(new GridBagLayout());
-        userLabel = new JLabel("Username");
-        passLabel = new JLabel("Password");
-        username = new JTextArea("");
-        password = new JTextArea("");
+        username = new JTextArea("Username");
+        password = new JTextArea("Password");
         signUpButton = new JButton("Sign Up");
 
         setBackground(Color.WHITE);
@@ -54,15 +51,12 @@ public class SignUpView extends JPanel {
        
         gbc.gridx = 0;
         gbc.gridy = 2;
-        add(userLabel,gbc);
-        gbc.gridx = 1;
         add(username, gbc);
         gbc.gridx = 0;
         gbc.gridy = 3;
-        add(passLabel,gbc);
-        gbc.gridx = 1;
         add(password, gbc);
 
+        gbc.gridx = 0;
         gbc.gridy = 4;
         gbc.ipady = 10;
         add(signUpButton, gbc);

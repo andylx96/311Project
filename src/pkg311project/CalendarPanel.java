@@ -16,7 +16,7 @@ import javax.swing.JTextArea;
 public class CalendarPanel extends JPanel {
 
     CalendarView calendar_view;
-    CalendarAppointView cap_view;
+    CalendarCreateAppointView cap_view;
     CalendarMenuPanel calendar_menuPanel;
     CalendarOverView calendar;
 
@@ -31,11 +31,11 @@ public class CalendarPanel extends JPanel {
 
     }
 
-    public CalendarAppointView getCap_view() {
+    public CalendarCreateAppointView getCap_view() {
         return cap_view;
     }
 
-    public void setCap_view(CalendarAppointView cap_view) {
+    public void setCap_view(CalendarCreateAppointView cap_view) {
         this.cap_view = cap_view;
     }
 
@@ -60,7 +60,7 @@ public class CalendarPanel extends JPanel {
         }
     }
 
-    public void addCalendarAppointView(CalendarAppointView cap_view) {
+    public void addCalendarAppointView(CalendarCreateAppointView cap_view) {
         this.cap_view = cap_view;
         add(cap_view, BorderLayout.CENTER);
         revalidate();
