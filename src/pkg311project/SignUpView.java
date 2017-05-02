@@ -34,8 +34,8 @@ public class SignUpView extends JPanel {
         setLayout(new GridBagLayout());
         userLabel = new JLabel("Username");
         passLabel = new JLabel("Password");
-        username = new JTextArea("~");
-        password = new JTextArea("~");
+        username = new JTextArea("");
+        password = new JTextArea("");
         signUpButton = new JButton("Sign Up");
 
         setBackground(Color.WHITE);

@@ -110,25 +110,23 @@ public class MainMenuController {
                 File f = new File(String.format("src/accounts/%s.txt", tempUsername));
                 if (f.exists() && !f.isDirectory()) {
                     JOptionPane.showMessageDialog(null, "User already exist");
+                } else if (n_model.getAccounts().get(0).contains("signUp_view.getUsername().getText()")) {
+                    JOptionPane.showMessageDialog(null, "Account Already Exist, Please Try Another Username");
                 } else {
-                    if (n_model.getAccounts().get(0).contains("signUp_view.getUsername().getText()")) {
-                        JOptionPane.showMessageDialog(null, "Account Already Exist, Please Try Another Username");
-                    } else {
 
-                        try {
-                            FileWriter fw = new FileWriter(String.format("src/accounts/%s.txt", tempUsername));
-                            fw.write(signUp_view.getUsername().getText() + "\n");
-                            fw.write(signUp_view.getPassword().getText() + "\n");
-                            fw.flush();
-                            fw.close();
-                            JOptionPane.showMessageDialog(null, "Account Created!");
-                            n_frame.switchToLoginView(n_frame.getMain_panel().getLog_view());
+                    try {
+                        FileWriter fw = new FileWriter(String.format("src/accounts/%s.txt", tempUsername));
+                        fw.write(signUp_view.getUsername().getText() + "\n");
+                        fw.write(signUp_view.getPassword().getText() + "\n");
+                        fw.flush();
+                        fw.close();
+                        JOptionPane.showMessageDialog(null, "Account Created!");
+                        n_frame.switchToLoginView(n_frame.getMain_panel().getLog_view());
 
-                        } catch (FileNotFoundException ex) {
-                        } catch (Throwable ex) {
-                        }
-
+                    } catch (FileNotFoundException ex) {
+                    } catch (Throwable ex) {
                     }
+
                 }
             } else {
                 JOptionPane.showMessageDialog(null, "Error, You cannot leave username Blank");
@@ -160,7 +158,11 @@ public class MainMenuController {
                     JOptionPane.showMessageDialog(null, "Error Account Not Found");
                 }
 
-                if (n_frame.getMain_panel().getLog_view().getUsername().getText().equalsIgnoreCase(username) && n_frame.getMain_panel().getLog_view().getPassword().getText().equals(password)) {
+                if (n_frame.getMain_panel().getLog_view().getUsername().getText().equalsIgnoreCase("") && n_frame.getMain_panel().getLog_view().getPassword().getText().equals("")) {
+
+                    JOptionPane.showMessageDialog(null, "Error Account Not Found");
+
+                } else if (n_frame.getMain_panel().getLog_view().getUsername().getText().equalsIgnoreCase(username) && n_frame.getMain_panel().getLog_view().getPassword().getText().equals(password)) {
 
                     n_frame.switchToMainView(main_view);
 
@@ -170,7 +172,6 @@ public class MainMenuController {
             }
         }
     }
-
 //    public void loadAccounts() {
 //
 //        String tempUsername, tempPassword;
@@ -198,6 +199,7 @@ public class MainMenuController {
 //        }
 //
 //    }
+
     public CalendarFrame getCalendar_frame() {
         return calendar_frame;
     }
