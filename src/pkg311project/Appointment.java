@@ -5,10 +5,6 @@
  */
 package pkg311project;
 
-/**
- *
- * @author zabuz
- */
 public class Appointment {
 
     String name, startTime, startAmPM, endTime, endAmPm, dateMonth, dateDay, dateYear;

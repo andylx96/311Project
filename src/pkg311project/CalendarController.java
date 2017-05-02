@@ -68,26 +68,6 @@ public class CalendarController {
         //Refresh calendar
         refreshCalendar(calendar.realMonth, calendar.realYear); //Refresh calendar
 
-        calendar_frame.getPanel().getCalendar_view().getTable().addMouseListener(new MouseAdapter() {
-            public void mouseClicked(MouseEvent e) {
-//                if (e.getClickCount() == 2) { // check if a double click
-                    System.out.println("hi");
-                    
-//                    
-//                int tempRow = calendar_frame.getPanel().getCalendar_view().getTable().convertRowIndexToModel(calendar_frame.getPanel().getCalendar_view().getTable().getSelectedRow());
-//                int tempColumn = calendar_frame.getPanel().getCalendar_view().getTable().convertColumnIndexToView(calendar_frame.getPanel().getCalendar_view().getTable().getSelectedColumn());
-////           String tempParseString = String.valueOf(tempRow) + ""
-     
-                    
-                    
-                    
-            updateArrayAndTable();
-            calendar_frame.switchToCalendarAppointView(calendar_appoint_view);
-                    
-//                }
-            }
-        });
-
     }
 
     class SwitchToAppointmentButtonListener implements ActionListener {
@@ -107,8 +87,6 @@ public class CalendarController {
         public void actionPerformed(ActionEvent e) {
 
             calendar_appoint_view.getStatus().setText("Account Created!");
-//            appointmentList.add(new Appointment(calendar_appoint_view.getAppoint_name().toString(), calendar_appoint_view.getAppoint_startTime().toString(),
-//                    calendar_appoint_view.getAppoint_endTime().toString()));
 
             FileWriter fout;
             try {
@@ -136,8 +114,6 @@ public class CalendarController {
         public void actionPerformed(ActionEvent e) {
 
             calendar_frame.switchToCalendar(calendar);
-//            displayTasks(appointmentList);
-            //JOptionPane.showMessageDialog(null, "Not Supported Yet");
         }
     }
 
@@ -221,9 +197,7 @@ public class CalendarController {
 
     public void tableToFile(int tempRow) {
 
-//        if (calendar_frame.getPanel().getCalendar_view().getTable().getSelectedRow() != -1) {
-//            String tempString = calendar_frame.getPanel().getCalendar_view().getSearchArea().getText();
-//            calendar_frame.getPanel().getCalendar_view().getSearchArea().setText("");
+
         FileWriter fout;
         try {
             fout = new FileWriter(String.format("src/appointments/%s.txt", getCurrentUsersName()));
@@ -236,8 +210,7 @@ public class CalendarController {
                     }
                 }
             }
-//                viewAll_view.getSearchArea().setText(tempString);
-//                c_view.getCreateAccount().setText("Account Created");
+
             fout.close();
             fout.flush();
         } catch (IOException ex) {
@@ -319,53 +292,7 @@ public class CalendarController {
         calendar_frame.switchToCalendar(calendar);
     }
 
-//    public void displayTasks(ArrayList<Appointment> ApptList) {
-//        ApptList.clear();
-//        ArrayList<Appointment> AptListNull = new ArrayList<Appointment>();
-//        ArrayList<Appointment> AptListDate = new ArrayList<Appointment>();
-//
-//        for (int i = 0; i < ApptList.size(); i++) {
-//            if (ApptList.get(i).getDate() == null) {
-//                AptListNull.add(ApptList.get(i));
-//            } else {
-//                int taskArrayYear = Integer.valueOf(ApptList.get(i).getDate().substring(0, 4));
-//                int taskArrayMonth = Integer.valueOf(ApptList.get(i).getDate().substring(5, 7));
-//                int taskArrayDay = Integer.valueOf(ApptList.get(i).getDate().substring(8, 10));
-//                if (AptListDate.size() == 0) {
-//                    AptListDate.add(ApptList.get(i));
-//                }
-//                for (int j = 0; j < AptListDate.size(); j++) {
-//                    int taskArrayDateYear = Integer.valueOf(AptListDate.get(j).getDate().substring(0, 4));
-//                    int taskArrayDateMonth = Integer.valueOf(AptListDate.get(j).getDate().substring(5, 7));
-//                    int taskArrayDateDay = Integer.valueOf(AptListDate.get(j).getDate().substring(8, 10));
-//                    if (taskArrayDateYear <= taskArrayYear) {
-//                        if (taskArrayDateYear < taskArrayYear) {
-//                            AptListDate.add(j, ApptList.get(i));
-//                            break;
-//                        } else {
-//                            if (taskArrayDateMonth <= taskArrayMonth) {
-//                                if (taskArrayDateYear < taskArrayYear) {
-//                                    AptListDate.add(j, ApptList.get(i));
-//                                    break;
-//                                } else {
-//                                    if (taskArrayDateDay <= taskArrayDay) {
-//                                        AptListDate.add(j, ApptList.get(i));
-//                                        break;
-//                                    }
-//                                }
-//                            }
-//                        }
-//                    }
-//                }
-//            }
-//        }
-//        for (int i = 0; i < AptListDate.size(); i++) {
-//            calendar.mtblCalendar.setValueAt((AptListDate.get(i)), 0, i);
-//        }
-//        for (int i = 0; i < AptListNull.size(); i++) {
-//            calendar.mtblCalendar.setValueAt((AptListNull.get(i)), 0, i);
-//        }
-//    }
+
     class tblCalendarRenderer extends DefaultTableCellRenderer {
 
         public Component getTableCellRendererComponent(JTable table, Object value, boolean selected, boolean focused, int row, int column) {
@@ -380,19 +307,6 @@ public class CalendarController {
                     setBackground(new Color(220, 220, 155));
                 }
             }
-//            System.out.println(value);
-//            
-//            
-//                System.out.println("Stuuf 2 "+appointmentList.get(1).getDateDay());
-//                System.out.println(appointmentList.get(1));
-//            
-//                
-//                for (int i = 0; i < appointmentList.size(); i++){
-//                if (String.valueOf(value).equalsIgnoreCase( appointmentList.get(i).dateDay)) {
-//                System.out.println("stuff" + value);
-//                System.out.println("Stuuf 2 "+appointmentList.get(1).getDateDay());
-//                setBackground(new Color(120, 120, 120));
-//            }}
 
             for (int i = 0; i < appointmentList.size(); i++) {
                 if (calendar.getCmbYear().getSelectedItem().toString().equalsIgnoreCase(appointmentList.get(i).getDateYear())) {
@@ -459,38 +373,4 @@ public class CalendarController {
         this.currentUsersName = currentUsersName;
     }
 
-//    public void loadAppointmentsToCal() {
-////                appointmentList.add(new Appointment(tempName, tempDateMonth, tempDateDay, tempDateYear, tempStart, tempStartAmPm, tempEnd, tempEndAmPm));
-////
-//        for (int i = 0; i < appointmentList.size(); i++) {
-////            System.out.println(appointmentList.get(i));
-//            if (calendar.getCmbYear().getSelectedItem().toString().equalsIgnoreCase(appointmentList.get(i).getDateYear())) {
-////                System.out.println(calendar.getCmbYear().getSelectedItem().toString());
-////                System.out.println(appointmentList.get(i).getDateYear());
-//                System.out.println("dupe");
-//                if (calendar.getMonth().getText().equalsIgnoreCase(appointmentList.get(i).getDateMonth())) {
-//                    System.out.println("month due");
-//                }
-//
-////                if(){}
-////                appointmentList.get(i).getDateDay()
-//                for (int k = 0; k < calendar_frame.getPanel().getCalendar_view().getTable().getRowCount(); k++) {
-//
-//                    for (int j = 0; j < calendar_frame.getPanel().getCalendar_view().getTable().getColumnCount(); j++) {
-//
-//                        if (appointmentList.get(i).getDateDay().equalsIgnoreCase(
-//                                calendar_frame.getPanel().getCalendar_view().getTable().getValueAt(k, j).toString())) {
-//                            System.out.println("triple dubs");
-//
-////                            calendar_frame.getPanel().getCalendar_view().getTable().get
-//
-//                        }
-////                            fout.write(calendar_frame.getPanel().getCalendar_view().getTable().getValueAt(i, j) + "\n");
-//                    }
-//                }
-//
-//            }
-//
-//        }
-//    }
 }

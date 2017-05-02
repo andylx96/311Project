@@ -19,13 +19,11 @@ public class MainMenuView extends JPanel {
         setLayout(new BorderLayout());
         calendarButton = new JButton("Calendar");
         contactsButton = new JButton("Contacts");
-        testButton = new JButton("TEST");
         picture = new JLabel(new ImageIcon("src/pkg311project/ourApp.png"));
         
         add(calendarButton, BorderLayout.EAST);
         add(contactsButton, BorderLayout.WEST);
         add(picture, BorderLayout.CENTER);
-//        add(testButton, BorderLayout.SOUTH);
         
     }
 

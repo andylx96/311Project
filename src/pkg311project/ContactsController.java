@@ -71,7 +71,6 @@ public class ContactsController {
 
             int resp = JOptionPane.showConfirmDialog(null, "Are You Sure You Want To Save All Changes?");
             if (resp == JOptionPane.YES_OPTION) {
-//                int tempRow = contacts_frame.getPanel().getContact_view().getTable().convertRowIndexToModel(contacts_frame.getPanel().getContact_view().getTable().getSelectedRow());
                 tableToFile(-1);
                 updateArrayAndTable();
             }
@@ -131,9 +130,7 @@ public class ContactsController {
                 String exportDir = f.getAbsolutePath();
                 System.out.println(exportDir);
                 int confirm = -1;
-//                if (f.exists() && !f.isDirectory()) {
                 confirm = JOptionPane.showConfirmDialog(null, "This WILL overwrite a file if it already exist. \nDo You Wish To Continue?");
-//                }
                 if (confirm == JOptionPane.YES_OPTION) {
                     FileWriter fout;
                     try {

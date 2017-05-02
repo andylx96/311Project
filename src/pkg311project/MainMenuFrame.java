@@ -27,19 +27,6 @@ public class MainMenuFrame extends JFrame {
         add(main_panel);
     }
 
-//    public void switchToCreateMasterLoginViewPanel(CreateMasterLoginView createMasterLogin_view) {
-//        nVpanel.removeSplash();
-//        nVpanel.removeMaster();
-//        nVpanel.removeCreate();
-//        nVpanel.removeSearch();
-//        nVpanel.removeViewAll();
-//        nVpanel.removeCreateMasterLoginView();
-//        nVpanel.addCreateMasterLoginView(createMasterLogin_view);
-//    }
-//
-//    public void addMasterButtonListener(ActionListener al) {
-//        nVpanel.menu.loginButton.addActionListener(al);
-//    }
     public void switchToMainView(MainMenuView main_view) {
         main_panel.removeLogin();
         main_panel.removeMainMenu();

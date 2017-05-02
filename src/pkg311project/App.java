@@ -5,10 +5,6 @@
  */
 package pkg311project;
 
-/**
- *
- * @author ajl5735
- */
 public class App {
 
     /**

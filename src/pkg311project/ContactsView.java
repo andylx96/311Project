@@ -131,13 +131,6 @@ public class ContactsView extends JPanel {
         this.save = save;
     }
 
-//    public FileNameExtensionFilter getFileFilter() {
-//        return fileFilter;
-//    }
-//
-//    public void setFileFilter(FileNameExtensionFilter fileFilter) {
-//        this.fileFilter = fileFilter;
-//    }
     public JButton getDelete() {
         return delete;
     }

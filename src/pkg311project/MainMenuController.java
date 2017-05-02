@@ -35,9 +35,6 @@ public class MainMenuController {
         this.n_frame = n_frame;
         main_view = new MainMenuView();
         signUp_view = new SignUpView();
-//        String currentUsersName =  ;
-//        log_view = new LoginView();
-//        loadAccounts();
 
         main_view.getContactsButton().addActionListener(new ContactsButtonListener());
         n_frame.getMain_panel().getLog_view().getLoginButton().addActionListener(new LoginButtonListener());
@@ -45,7 +42,6 @@ public class MainMenuController {
         n_frame.getMain_panel().getLog_view().getSignUpButton().addActionListener(new LoginViewSignUpButtonListener());
         signUp_view.getSignUpButton().addActionListener(new SignUpViewSignUpButtonListener());
         main_view.getCalendarButton().addActionListener(new CalendarButtonListener());
-//        main_view.getTestButton().addActionListener(new TestButtonListener());
 
     }
 
@@ -65,12 +61,6 @@ public class MainMenuController {
 
     }
 
-//    class TestButtonListener implements ActionListener {
-//        @Override
-//        public void actionPerformed(ActionEvent e){
-//            main_view.getTestButton().setVisible(false);
-//        }
-//    }
     class CalendarButtonListener implements ActionListener {
 
         @Override
@@ -93,8 +83,6 @@ public class MainMenuController {
         @Override
         public void actionPerformed(ActionEvent e) {
             {
-
-//                JOptionPane.showMessageDialog(null, "Not Supported Yet.");
                 n_frame.switchToSignUpView(signUp_view);
             }
         }
@@ -172,33 +160,6 @@ public class MainMenuController {
             }
         }
     }
-//    public void loadAccounts() {
-//
-//        String tempUsername, tempPassword;
-//
-//        n_model.getAccounts().get(0).clear();
-//        n_model.getAccounts().get(1).clear();
-//        try {
-//            FileReader fin = new FileReader("src/pkg311project/Login.txt");
-//            Scanner scan = new Scanner(fin);
-//            while (scan.hasNextLine()) {
-//
-//                tempUsername = scan.nextLine();
-//                tempPassword = scan.nextLine();
-//
-//                n_model.getAccounts().get(0).add(tempUsername);
-//                n_model.getAccounts().get(1).add(tempPassword);
-//                n_frame.getMain_panel().getLog_view().getUsernameCombo().addItem(tempUsername);
-//            }
-//
-//            fin.close();
-//        } catch (FileNotFoundException ex) {
-//            System.out.println("InfoNotFound");
-//        } catch (IOException ex) {
-//            System.out.println("InfoNotFound");
-//        }
-//
-//    }
 
     public CalendarFrame getCalendar_frame() {
         return calendar_frame;
