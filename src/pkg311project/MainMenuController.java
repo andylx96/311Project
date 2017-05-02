@@ -153,9 +153,9 @@ public class MainMenuController {
                     }
                     fin.close();
                 } catch (FileNotFoundException ex) {
-                    JOptionPane.showMessageDialog(null, "Error Account Not Found");
+                    
                 } catch (IOException ex) {
-                    JOptionPane.showMessageDialog(null, "Error Account Not Found");
+                    
                 }
 
                 if (n_frame.getMain_panel().getLog_view().getUsername().getText().equalsIgnoreCase("") && n_frame.getMain_panel().getLog_view().getPassword().getText().equals("")) {
