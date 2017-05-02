@@ -39,8 +39,8 @@ public class LoginView extends JPanel {
         passLabel = new JLabel("Password");
         loginStatus = new JLabel("Please Login.");
         loginButton = new JButton("Login");
-        username = new JTextArea("");
-        password = new JTextArea("");
+        username = new JTextArea("~");
+        password = new JTextArea("~");
         hint = new JLabel("The Default Username and Password is, Username/Password");
 //        usernameCombo = new JComboBox();
         signUpButton = new JButton("Sign Up");

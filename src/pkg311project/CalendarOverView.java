@@ -30,7 +30,7 @@ public class CalendarOverView extends JPanel {
     CalendarOverView() {
         //Create controls
         Month = new JLabel("January");
-        Year = new JLabel("Change year:");
+        Year = new JLabel("");
         cmbYear = new JComboBox();
         btnprev = new JButton("<<");
         btnnext = new JButton(">>");

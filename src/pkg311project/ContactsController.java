@@ -30,7 +30,7 @@ public class ContactsController {
     ContactsFrame contacts_frame;
     String tempC, tempA, tempB;
 
-    ArrayList<Contacts> contactsList = new ArrayList();
+    ArrayList<Contacts> contactsList = new ArrayList<Contacts>();
     String currentUsersName;
 
     ContactsController(ContactsModel contacts_model, ContactsFrame contacts_frame, String username) {

@@ -27,7 +27,7 @@ public class CalendarCreateAppointView extends JPanel {
         appoint_endTime = new JTextField("");
         am_pm_startCombo = new JComboBox<String>(am_pmArray);
         am_pm_endCombo = new JComboBox<String>(am_pmArray);
-        monthCombo = new JComboBox(monthArray);
+        monthCombo = new JComboBox<String>(monthArray);
         createAppoint = new JButton("Create Appointment");
         dateLabel = new JLabel("Date:(mm/dd/yyyy) Format");
         startLabel = new JLabel("Start Time");
