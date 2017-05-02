@@ -13,8 +13,9 @@ public class CalendarCreateAppointView extends JPanel {
     JLabel status, dateLabel, appoint_label, startLabel, endLabel;
     JTextField appoint_name, appoint_startTime, appoint_endTime, dateDay, dateMonth, dateYear;
     JButton createAppoint;
-    JComboBox<String> am_pm_startCombo, am_pm_endCombo;
+    JComboBox<String> am_pm_startCombo, am_pm_endCombo, monthCombo;
     String[] am_pmArray = {"AM", "PM"};
+    String[] monthArray = {"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
     GridBagConstraints gbc = new GridBagConstraints();
 
     public CalendarCreateAppointView() {
@@ -26,6 +27,7 @@ public class CalendarCreateAppointView extends JPanel {
         appoint_endTime = new JTextField("");
         am_pm_startCombo = new JComboBox<String>(am_pmArray);
         am_pm_endCombo = new JComboBox<String>(am_pmArray);
+        monthCombo = new JComboBox(monthArray);
         createAppoint = new JButton("Create Appointment");
         dateLabel = new JLabel("Date:(mm/dd/yyyy) Format");
         startLabel = new JLabel("Start Time");
@@ -53,7 +55,7 @@ public class CalendarCreateAppointView extends JPanel {
         gbc.weightx = 1;
         gbc.gridx = 1;
         gbc.gridy = 1;
-        add(dateMonth, gbc);
+        add(monthCombo, gbc);
         gbc.gridx = 2;
         add(dateDay, gbc);
         gbc.gridx = 3;
@@ -93,6 +95,14 @@ public class CalendarCreateAppointView extends JPanel {
 
     public void setStatus(JLabel status) {
         this.status = status;
+    }
+
+    public JComboBox<String> getMonthCombo() {
+        return monthCombo;
+    }
+
+    public void setMonthCombo(JComboBox<String> monthCombo) {
+        this.monthCombo = monthCombo;
     }
 
     public JTextField getAppoint_name() {

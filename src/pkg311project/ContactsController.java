@@ -170,22 +170,13 @@ public class ContactsController {
                 tempA = JOptionPane.showInputDialog(null, "Contact Name: ");
                 tempB = JOptionPane.showInputDialog(null, "Phone Number: ");
                 tempC = JOptionPane.showInputDialog(null, "Extra Info: ");
-                if (tempA == null)
-                {
+                if (tempA == null) {
                     JOptionPane.showMessageDialog(null, "There was an error. Try Again");
-                }
-                else
-                if (tempB == null)
-                {
+                } else if (tempB == null) {
                     JOptionPane.showMessageDialog(null, "There was an error. Try Again");
-                }
-                else
-                if (tempC == null)
-                {
+                } else if (tempC == null) {
                     JOptionPane.showMessageDialog(null, "There was an error. Try Again");
-                }
-                else
-                {
+                } else {
                     fout.write("\n" + tempA + ",");
                     fout.write(tempB + ",");
                     fout.write(tempC);
